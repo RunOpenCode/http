@@ -1,5 +1,9 @@
 {
     "name": "@runopencode/http",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/RunOpenCode/http"
+    },
     "version": "0.0.1",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
