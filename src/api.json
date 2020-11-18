@@ -1,0 +1,1335 @@
+{
+    "base_url": "",
+    "routes": {
+        "admin_file_upload_negotiate": {
+            "tokens": [
+                [
+                    "text",
+                    "\/admin\/file-upload"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "POST"
+            ],
+            "schemes": []
+        },
+        "admin_file_upload_chunk": {
+            "tokens": [
+                [
+                    "variable",
+                    "\/",
+                    "[^\/]++",
+                    "name",
+                    true
+                ],
+                [
+                    "variable",
+                    "\/",
+                    "[^\/]++",
+                    "contract",
+                    true
+                ],
+                [
+                    "text",
+                    "\/admin\/file-upload"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "PATCH"
+            ],
+            "schemes": []
+        },
+        "admin_file_upload_delete": {
+            "tokens": [
+                [
+                    "variable",
+                    "\/",
+                    "[^\/]++",
+                    "contract",
+                    true
+                ],
+                [
+                    "text",
+                    "\/admin\/file-upload"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "DELETE"
+            ],
+            "schemes": []
+        },
+        "api_login": {
+            "tokens": [
+                [
+                    "text",
+                    "\/api\/login"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "POST"
+            ],
+            "schemes": []
+        },
+        "api_register": {
+            "tokens": [
+                [
+                    "text",
+                    "\/api\/register"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "POST"
+            ],
+            "schemes": []
+        },
+        "api_forgot_password": {
+            "tokens": [
+                [
+                    "text",
+                    "\/api\/forgot-password"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "POST"
+            ],
+            "schemes": []
+        },
+        "api_common": {
+            "tokens": [
+                [
+                    "text",
+                    "\/api"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "GET"
+            ],
+            "schemes": []
+        },
+        "api_common_error": {
+            "tokens": [
+                [
+                    "text",
+                    "\/api\/error"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "GET"
+            ],
+            "schemes": []
+        },
+        "api_classification_specialities": {
+            "tokens": [
+                [
+                    "text",
+                    "\/api\/classification\/specialities"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "GET"
+            ],
+            "schemes": []
+        },
+        "api_classification_interests": {
+            "tokens": [
+                [
+                    "text",
+                    "\/api\/classification\/interests"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "GET"
+            ],
+            "schemes": []
+        },
+        "api_events": {
+            "tokens": [
+                [
+                    "text",
+                    "\/api\/events"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "GET"
+            ],
+            "schemes": []
+        },
+        "api_events_event": {
+            "tokens": [
+                [
+                    "variable",
+                    "\/",
+                    "[^\/]++",
+                    "event",
+                    true
+                ],
+                [
+                    "text",
+                    "\/api\/events"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "GET"
+            ],
+            "schemes": []
+        },
+        "api_events_event_tracks": {
+            "tokens": [
+                [
+                    "text",
+                    "\/tracks"
+                ],
+                [
+                    "variable",
+                    "\/",
+                    "[^\/]++",
+                    "event",
+                    true
+                ],
+                [
+                    "text",
+                    "\/api\/events"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "GET"
+            ],
+            "schemes": []
+        },
+        "api_events_event_playlists": {
+            "tokens": [
+                [
+                    "text",
+                    "\/playlists"
+                ],
+                [
+                    "variable",
+                    "\/",
+                    "[^\/]++",
+                    "event",
+                    true
+                ],
+                [
+                    "text",
+                    "\/api\/events"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "GET"
+            ],
+            "schemes": []
+        },
+        "api_events_event_playlists_preset_featured": {
+            "tokens": [
+                [
+                    "text",
+                    "\/playlists\/featured"
+                ],
+                [
+                    "variable",
+                    "\/",
+                    "[^\/]++",
+                    "event",
+                    true
+                ],
+                [
+                    "text",
+                    "\/api\/events"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "GET"
+            ],
+            "schemes": []
+        },
+        "api_events_event_playlists_preset_sponsored": {
+            "tokens": [
+                [
+                    "text",
+                    "\/playlists\/sponsored"
+                ],
+                [
+                    "variable",
+                    "\/",
+                    "[^\/]++",
+                    "event",
+                    true
+                ],
+                [
+                    "text",
+                    "\/api\/events"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "GET"
+            ],
+            "schemes": []
+        },
+        "api_events_event_playlists_playlists_by_type": {
+            "tokens": [
+                [
+                    "variable",
+                    "\/",
+                    "[^\/]++",
+                    "playlistType",
+                    true
+                ],
+                [
+                    "text",
+                    "\/playlists"
+                ],
+                [
+                    "variable",
+                    "\/",
+                    "[^\/]++",
+                    "event",
+                    true
+                ],
+                [
+                    "text",
+                    "\/api\/events"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "GET"
+            ],
+            "schemes": []
+        },
+        "api_events_event_videos": {
+            "tokens": [
+                [
+                    "text",
+                    "\/videos"
+                ],
+                [
+                    "variable",
+                    "\/",
+                    "[^\/]++",
+                    "event",
+                    true
+                ],
+                [
+                    "text",
+                    "\/api\/events"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "GET"
+            ],
+            "schemes": []
+        },
+        "api_events_event_documents": {
+            "tokens": [
+                [
+                    "text",
+                    "\/documents"
+                ],
+                [
+                    "variable",
+                    "\/",
+                    "[^\/]++",
+                    "event",
+                    true
+                ],
+                [
+                    "text",
+                    "\/api\/events"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "GET"
+            ],
+            "schemes": []
+        },
+        "api_specialities_speciality_events": {
+            "tokens": [
+                [
+                    "text",
+                    "\/events"
+                ],
+                [
+                    "variable",
+                    "\/",
+                    "[^\/]++",
+                    "speciality",
+                    true
+                ],
+                [
+                    "text",
+                    "\/api\/specialities"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "GET"
+            ],
+            "schemes": []
+        },
+        "api_societies": {
+            "tokens": [
+                [
+                    "text",
+                    "\/api\/societies"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "GET"
+            ],
+            "schemes": []
+        },
+        "api_societies_society_events": {
+            "tokens": [
+                [
+                    "text",
+                    "\/events"
+                ],
+                [
+                    "variable",
+                    "\/",
+                    "[^\/]++",
+                    "society",
+                    true
+                ],
+                [
+                    "text",
+                    "\/api\/societies"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "GET"
+            ],
+            "schemes": []
+        },
+        "api_documents_document": {
+            "tokens": [
+                [
+                    "variable",
+                    "\/",
+                    "[^\/]++",
+                    "document",
+                    true
+                ],
+                [
+                    "text",
+                    "\/api\/documents"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "GET"
+            ],
+            "schemes": []
+        },
+        "api_user_documents_document_bookmark": {
+            "tokens": [
+                [
+                    "text",
+                    "\/bookmark"
+                ],
+                [
+                    "variable",
+                    "\/",
+                    "[^\/]++",
+                    "document",
+                    true
+                ],
+                [
+                    "text",
+                    "\/api\/user\/documents"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "POST"
+            ],
+            "schemes": []
+        },
+        "api_user_documents_document_bookmark_delete": {
+            "tokens": [
+                [
+                    "text",
+                    "\/bookmark"
+                ],
+                [
+                    "variable",
+                    "\/",
+                    "[^\/]++",
+                    "document",
+                    true
+                ],
+                [
+                    "text",
+                    "\/api\/user\/documents"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "DELETE"
+            ],
+            "schemes": []
+        },
+        "api_user_documents_document_like": {
+            "tokens": [
+                [
+                    "text",
+                    "\/like"
+                ],
+                [
+                    "variable",
+                    "\/",
+                    "[^\/]++",
+                    "document",
+                    true
+                ],
+                [
+                    "text",
+                    "\/api\/user\/documents"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "POST"
+            ],
+            "schemes": []
+        },
+        "api_user_documents_document_like_delete": {
+            "tokens": [
+                [
+                    "text",
+                    "\/like"
+                ],
+                [
+                    "variable",
+                    "\/",
+                    "[^\/]++",
+                    "document",
+                    true
+                ],
+                [
+                    "text",
+                    "\/api\/user\/documents"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "DELETE"
+            ],
+            "schemes": []
+        },
+        "api_user_profile": {
+            "tokens": [
+                [
+                    "text",
+                    "\/api\/user\/profile"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "GET"
+            ],
+            "schemes": []
+        },
+        "api_user_profile_update": {
+            "tokens": [
+                [
+                    "text",
+                    "\/api\/user\/profile"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "PATCH"
+            ],
+            "schemes": []
+        },
+        "api_user_change_password": {
+            "tokens": [
+                [
+                    "text",
+                    "\/api\/user\/change-password"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "PATCH"
+            ],
+            "schemes": []
+        },
+        "api_user_users": {
+            "tokens": [
+                [
+                    "text",
+                    "\/api\/user\/users"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "POST"
+            ],
+            "schemes": []
+        },
+        "api_user_playlists_playlist_bookmarked": {
+            "tokens": [
+                [
+                    "text",
+                    "\/api\/user\/playlists\/bookmarked"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "GET"
+            ],
+            "schemes": []
+        },
+        "api_user_playlists_playlist_liked": {
+            "tokens": [
+                [
+                    "text",
+                    "\/api\/user\/playlists\/liked"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "GET"
+            ],
+            "schemes": []
+        },
+        "api_user_playlists_playlist_watch_again": {
+            "tokens": [
+                [
+                    "text",
+                    "\/api\/user\/playlists\/watch-again"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "GET"
+            ],
+            "schemes": []
+        },
+        "api_videos_search": {
+            "tokens": [
+                [
+                    "text",
+                    "\/api\/videos\/search"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "GET"
+            ],
+            "schemes": []
+        },
+        "api_videos_video": {
+            "tokens": [
+                [
+                    "variable",
+                    "\/",
+                    "[^\/]++",
+                    "video",
+                    true
+                ],
+                [
+                    "text",
+                    "\/api\/videos"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "GET"
+            ],
+            "schemes": []
+        },
+        "api_playlists_playlist": {
+            "tokens": [
+                [
+                    "variable",
+                    "\/",
+                    "[^\/]++",
+                    "playlist",
+                    true
+                ],
+                [
+                    "text",
+                    "\/api\/playlists"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "GET"
+            ],
+            "schemes": []
+        },
+        "api_videos_video_resume": {
+            "tokens": [
+                [
+                    "text",
+                    "\/resume"
+                ],
+                [
+                    "variable",
+                    "\/",
+                    "[^\/]++",
+                    "video",
+                    true
+                ],
+                [
+                    "text",
+                    "\/api\/videos"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "GET"
+            ],
+            "schemes": []
+        },
+        "api_user_videos_video_bookmark": {
+            "tokens": [
+                [
+                    "text",
+                    "\/bookmark"
+                ],
+                [
+                    "variable",
+                    "\/",
+                    "[^\/]++",
+                    "video",
+                    true
+                ],
+                [
+                    "text",
+                    "\/api\/user\/videos"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "POST"
+            ],
+            "schemes": []
+        },
+        "api_user_videos_video_bookmark_delete": {
+            "tokens": [
+                [
+                    "text",
+                    "\/bookmark"
+                ],
+                [
+                    "variable",
+                    "\/",
+                    "[^\/]++",
+                    "video",
+                    true
+                ],
+                [
+                    "text",
+                    "\/api\/user\/videos"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "DELETE"
+            ],
+            "schemes": []
+        },
+        "api_user_videos_video_like": {
+            "tokens": [
+                [
+                    "text",
+                    "\/like"
+                ],
+                [
+                    "variable",
+                    "\/",
+                    "[^\/]++",
+                    "video",
+                    true
+                ],
+                [
+                    "text",
+                    "\/api\/user\/videos"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "POST"
+            ],
+            "schemes": []
+        },
+        "api_user_videos_video_like_delete": {
+            "tokens": [
+                [
+                    "text",
+                    "\/like"
+                ],
+                [
+                    "variable",
+                    "\/",
+                    "[^\/]++",
+                    "video",
+                    true
+                ],
+                [
+                    "text",
+                    "\/api\/user\/videos"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "DELETE"
+            ],
+            "schemes": []
+        },
+        "api_user_comments_comment": {
+            "tokens": [
+                [
+                    "text",
+                    "\/api\/user\/comments\/comment"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "POST"
+            ],
+            "schemes": []
+        },
+        "api_user_comments_comment_delete": {
+            "tokens": [
+                [
+                    "variable",
+                    "\/",
+                    "[^\/]++",
+                    "comment",
+                    true
+                ],
+                [
+                    "text",
+                    "\/api\/user\/comments"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "DELETE"
+            ],
+            "schemes": []
+        },
+        "api_user_comments_comment_like": {
+            "tokens": [
+                [
+                    "text",
+                    "\/like"
+                ],
+                [
+                    "variable",
+                    "\/",
+                    "[^\/]++",
+                    "comment",
+                    true
+                ],
+                [
+                    "text",
+                    "\/api\/user\/comments"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "POST"
+            ],
+            "schemes": []
+        },
+        "api_user_comments_comment_like_delete": {
+            "tokens": [
+                [
+                    "text",
+                    "\/like"
+                ],
+                [
+                    "variable",
+                    "\/",
+                    "[^\/]++",
+                    "comment",
+                    true
+                ],
+                [
+                    "text",
+                    "\/api\/user\/comments"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "DELETE"
+            ],
+            "schemes": []
+        },
+        "api_user_comments_comment_up_vote": {
+            "tokens": [
+                [
+                    "text",
+                    "\/up-vote"
+                ],
+                [
+                    "variable",
+                    "\/",
+                    "[^\/]++",
+                    "comment",
+                    true
+                ],
+                [
+                    "text",
+                    "\/api\/user\/comments"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "POST"
+            ],
+            "schemes": []
+        },
+        "api_user_comments_comment_up_vote_delete": {
+            "tokens": [
+                [
+                    "text",
+                    "\/up-vote"
+                ],
+                [
+                    "variable",
+                    "\/",
+                    "[^\/]++",
+                    "comment",
+                    true
+                ],
+                [
+                    "text",
+                    "\/api\/user\/comments"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "DELETE"
+            ],
+            "schemes": []
+        },
+        "api_user_comments_reply": {
+            "tokens": [
+                [
+                    "text",
+                    "\/api\/user\/comments\/reply"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "POST"
+            ],
+            "schemes": []
+        },
+        "api_user_comments_reply_delete": {
+            "tokens": [
+                [
+                    "variable",
+                    "\/",
+                    "[^\/]++",
+                    "reply",
+                    true
+                ],
+                [
+                    "text",
+                    "\/api\/user\/comments\/reply"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "DELETE"
+            ],
+            "schemes": []
+        },
+        "api_user_comments_reply_like": {
+            "tokens": [
+                [
+                    "text",
+                    "\/like"
+                ],
+                [
+                    "variable",
+                    "\/",
+                    "[^\/]++",
+                    "reply",
+                    true
+                ],
+                [
+                    "text",
+                    "\/api\/user\/comments\/reply"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "POST"
+            ],
+            "schemes": []
+        },
+        "api_user_comments_reply_like_delete": {
+            "tokens": [
+                [
+                    "text",
+                    "\/like"
+                ],
+                [
+                    "variable",
+                    "\/",
+                    "[^\/]++",
+                    "reply",
+                    true
+                ],
+                [
+                    "text",
+                    "\/api\/user\/comments\/reply"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "DELETE"
+            ],
+            "schemes": []
+        },
+        "api_analytics_download": {
+            "tokens": [
+                [
+                    "text",
+                    "\/api\/analytics\/download"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "GET",
+                "POST",
+                "PATCH"
+            ],
+            "schemes": []
+        },
+        "api_analytics_playback_request": {
+            "tokens": [
+                [
+                    "text",
+                    "\/api\/analytics\/playback\/request"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "POST"
+            ],
+            "schemes": []
+        },
+        "api_analytics_playback_log": {
+            "tokens": [
+                [
+                    "text",
+                    "\/api\/analytics\/playback\/log"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "POST"
+            ],
+            "schemes": []
+        },
+        "api_analytics_playback_stop": {
+            "tokens": [
+                [
+                    "text",
+                    "\/api\/analytics\/playback\/stop"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "POST"
+            ],
+            "schemes": []
+        },
+        "api_transcoder_playlist": {
+            "tokens": [
+                [
+                    "variable",
+                    "\/",
+                    "[^\/]++",
+                    "token",
+                    true
+                ],
+                [
+                    "variable",
+                    "\/",
+                    "[^\/]++",
+                    "format",
+                    true
+                ],
+                [
+                    "variable",
+                    "\/",
+                    "[^\/]++",
+                    "transcodable",
+                    true
+                ],
+                [
+                    "text",
+                    "\/api\/transcoder\/playlist"
+                ]
+            ],
+            "defaults": {
+                "token": null,
+                "format": "hls"
+            },
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "GET"
+            ],
+            "schemes": []
+        },
+        "api_products_latest": {
+            "tokens": [
+                [
+                    "text",
+                    "\/api\/products\/latest"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "GET",
+                "POST"
+            ],
+            "schemes": []
+        },
+        "api_products_upcoming": {
+            "tokens": [
+                [
+                    "text",
+                    "\/api\/products\/upcoming"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "GET",
+                "POST"
+            ],
+            "schemes": []
+        },
+        "api_products_live": {
+            "tokens": [
+                [
+                    "text",
+                    "\/api\/products\/live-events"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "GET",
+                "POST"
+            ],
+            "schemes": []
+        },
+        "api_products_standard": {
+            "tokens": [
+                [
+                    "text",
+                    "\/api\/products"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "GET",
+                "POST"
+            ],
+            "schemes": []
+        },
+        "api_redeem_access_code": {
+            "tokens": [
+                [
+                    "text",
+                    "\/api\/redeem"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "POST"
+            ],
+            "schemes": []
+        },
+        "api_purchases_list": {
+            "tokens": [
+                [
+                    "text",
+                    "\/api\/purchased"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "GET",
+                "POST"
+            ],
+            "schemes": []
+        },
+        "api_waitlist_apply": {
+            "tokens": [
+                [
+                    "text",
+                    "\/api\/waitlist\/apply"
+                ]
+            ],
+            "defaults": [],
+            "requirements": [],
+            "hosttokens": [],
+            "methods": [
+                "POST"
+            ],
+            "schemes": []
+        }
+    },
+    "prefix": "",
+    "host": "localhost",
+    "port": "",
+    "scheme": "http",
+    "locale": []
+}

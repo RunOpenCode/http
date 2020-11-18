@@ -1,0 +1,26 @@
+{
+    "compileOnSave": false,
+    "compilerOptions": {
+        "baseUrl": ".",
+        "declaration": true,
+        "downlevelIteration": true,
+        "experimentalDecorators": true,
+        "importHelpers": true,
+        "resolveJsonModule": true,
+        "allowSyntheticDefaultImports": true,
+        "module": "esnext",
+        "esModuleInterop": true,
+        "target": "es6",
+        "moduleResolution": "node",
+        "outDir": "dist",
+        "declarationMap": true,
+        "sourceMap": true,
+        "lib": [
+            "es2018",
+            "dom"
+        ],
+        "typeRoots": [
+            "node_modules/@types"
+        ]
+    }
+}

@@ -1,0 +1,6 @@
+#!/bin/sh
+
+PROJECTDIR="$( cd "$(dirname "$0")" ; cd ".." ; pwd -P )"
+ARGS=$@
+
+docker run -it --rm -v "$PROJECTDIR:/var/www/html" -w "/var/www/html" node:latest sh -c "npm $ARGS"
