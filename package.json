@@ -4,13 +4,18 @@
         "type": "git",
         "url": "https://github.com/RunOpenCode/http"
     },
-    "version": "0.0.1",
+    "version": "0.0.2",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "scripts": {
         "build": "tsc",
         "eslint": "node_modules/.bin/eslint --fix 'src/*.ts'"
     },
+    "files": [
+        "dist",
+        "LICENSE",
+        "README.md"
+    ],
     "peerDependencies": {},
     "devDependencies": {
         "@typescript-eslint/eslint-plugin": "^3.6.0",
@@ -26,5 +31,6 @@
     "dependencies": {
         "rxjs": "^6.6.0"
     },
-    "license": "MIT"
+    "license": "MIT",
+    "private": false
 }
