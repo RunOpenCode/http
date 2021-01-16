@@ -7,7 +7,7 @@ import {
  * HTTP Error is value object containing data about occurred error
  * when executing HTTP request.
  */
-export class HttpError extends Error {
+export class HttpError<T> extends Error {
 
     private readonly _url: string;
 
@@ -21,7 +21,7 @@ export class HttpError extends Error {
 
     private readonly _body: any | null;
 
-    private _json: any;
+    private _json: T;
 
     public constructor(
         url: string,
@@ -80,14 +80,14 @@ export class HttpError extends Error {
     /**
      * Get response body (if any).
      */
-    public get body(): any {
+    public get body(): T {
         return this._body;
     }
 
     /**
      * Get response content as JSON object.
      */
-    public get json(): Promise<any | null> {
+    public get json(): Promise<T | null> {
 
         return new Promise<any | null>((resolve: (result: any | null) => void, reject: () => void): void => {
             if (undefined !== this._json) {
@@ -98,6 +98,7 @@ export class HttpError extends Error {
             if (null === this._body || undefined === this._body || '' === this._body.trim()) {
                 this._json = null;
                 resolve(this.json);
+                return;
             }
 
             try {

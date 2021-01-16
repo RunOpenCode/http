@@ -7,7 +7,7 @@ import {
  * HTTP Response is value object containing data received from
  * server when executing HTTP request.
  */
-export class HttpResponse implements HttpResponseInterface {
+export class HttpResponse<T> implements HttpResponseInterface<T> {
 
     private readonly _url: string;
 
@@ -15,14 +15,14 @@ export class HttpResponse implements HttpResponseInterface {
 
     private readonly _headers: HttpHeadersInterface;
 
-    private readonly _body: string | null;
+    private readonly _body: any | null;
 
-    private _json: any | null;
+    private _json: T | null;
 
     public constructor(
         url: string,
         status: number,
-        body: string | null,
+        body: any | null,
         headers: HttpHeadersInterface,
     ) {
         this._url     = url;
@@ -52,7 +52,7 @@ export class HttpResponse implements HttpResponseInterface {
         return this._headers;
     }
 
-    public get body(): any | null {
+    public get body(): T | null {
         return this._body;
     }
 
@@ -66,7 +66,7 @@ export class HttpResponse implements HttpResponseInterface {
     /**
      * @inheritdoc
      */
-    public get json(): Promise<any | null> {
+    public get json(): Promise<T | null> {
 
         return new Promise<any | null>((resolve: (result: any | null) => void, reject: () => void): void => {
             if (undefined !== this._json) {
@@ -77,6 +77,7 @@ export class HttpResponse implements HttpResponseInterface {
             if (null === this._body || undefined === this._body || '' === this._body.trim()) {
                 this._json = null;
                 resolve(this.json);
+                return;
             }
 
             try {

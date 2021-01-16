@@ -11,20 +11,20 @@ export interface HttpClientInterface {
     /**
      * Execute GET request on given URL.
      */
-    get(url: string, headers?: HttpHeadersInterface): Observable<HttpResponseInterface>;
+    get<T>(url: string, headers?: HttpHeadersInterface): Observable<HttpResponseInterface<T>>;
 
     /**
      * Execute POST request on given URL.
      */
-    post(url: string, data: any | null, headers?: HttpHeadersInterface): Observable<HttpResponseInterface>;
+    post<T>(url: string, data: any | null, headers?: HttpHeadersInterface): Observable<HttpResponseInterface<T>>;
 
     /**
      * Execute POST request on given URL.
      */
-    patch(url: string, data: any | null, headers?: HttpHeadersInterface): Observable<HttpResponseInterface>;
+    patch<T>(url: string, data: any | null, headers?: HttpHeadersInterface): Observable<HttpResponseInterface<T>>;
 
     /**
      * Execute request.
      */
-    request(request: HttpRequestInterface): Observable<HttpResponseInterface>;
+    request<T>(request: HttpRequestInterface): Observable<HttpResponseInterface<T>>;
 }

@@ -19,7 +19,7 @@ import {
 
 export class FetchBrowserAdapter implements HttpAdapterInterface {
 
-    public execute(request: HttpRequestInterface): Observable<HttpResponseInterface> {
+    public execute<T>(request: HttpRequestInterface): Observable<HttpResponseInterface<T>> {
         let body: any = request.body;
 
         if ('application/json' === request.headers.get('Content-Type') && typeof body === 'object') {
@@ -32,7 +32,7 @@ export class FetchBrowserAdapter implements HttpAdapterInterface {
             body:    body,
         });
 
-        let observable: Subject<HttpResponseInterface> = new Subject<HttpResponseInterface>();
+        let observable: Subject<HttpResponseInterface<T>> = new Subject<HttpResponseInterface<T>>();
 
         promise.then(async (response: Response): Promise<void> => {
             let data: string = await response.text();

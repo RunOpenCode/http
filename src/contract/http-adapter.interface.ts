@@ -9,5 +9,5 @@ export interface HttpAdapterInterface {
     /**
      * Execute HTTP request.
      */
-    execute(request: HttpRequestInterface): Observable<HttpResponseInterface>;
+    execute<T>(request: HttpRequestInterface): Observable<HttpResponseInterface<T>>;
 }

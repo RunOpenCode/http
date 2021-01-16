@@ -1,9 +1,10 @@
+import { HttpStatusCode }       from '../enum';
 import { HttpHeadersInterface } from './http-headers.interface';
 
 /**
  * Abstraction of HTTP response.
  */
-export interface HttpResponseInterface {
+export interface HttpResponseInterface<T> {
 
     /**
      * Get final destination URL.
@@ -13,7 +14,7 @@ export interface HttpResponseInterface {
     /**
      * Get response status code.
      */
-    readonly status: number;
+    readonly status: HttpStatusCode;
 
     /**
      * Get response headers.
@@ -23,15 +24,15 @@ export interface HttpResponseInterface {
     /**
      * Get response body.
      */
-    readonly body: any | null;
+    readonly body: T | null;
 
     /**
      * Get response content as text.
      */
-    readonly text: Promise<string|null>;
+    readonly text: Promise<string | null>;
 
     /**
      * Get response content as JSON object.
      */
-    readonly json: Promise<any|null>;
+    readonly json: Promise<T | null>;
 }

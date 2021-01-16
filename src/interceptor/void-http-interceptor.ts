@@ -16,7 +16,7 @@ export class VoidHttpInterceptor implements HttpInterceptorInterface {
     /**
      * @inheritdoc
      */
-    public intercept(request: HttpRequestInterface, next: HttpHandlerInterface): Observable<HttpResponseInterface> {
+    public intercept(request: HttpRequestInterface, next: HttpHandlerInterface): Observable<HttpResponseInterface<any>> {
         return next.handle(request);
     }
 

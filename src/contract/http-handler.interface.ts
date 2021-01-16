@@ -10,5 +10,5 @@ export interface HttpHandlerInterface {
     /**
      * Handle request.
      */
-    handle(request: HttpRequestInterface): Observable<HttpResponseInterface>;
+    handle(request: HttpRequestInterface): Observable<HttpResponseInterface<any>>;
 }

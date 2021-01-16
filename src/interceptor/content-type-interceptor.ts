@@ -18,7 +18,7 @@ export class ContentTypeInterceptor implements HttpInterceptorInterface {
     /**
      * @inheritdoc
      */
-    public intercept(request: HttpRequestInterface, next: HttpHandlerInterface): Observable<HttpResponseInterface> {
+    public intercept(request: HttpRequestInterface, next: HttpHandlerInterface): Observable<HttpResponseInterface<any>> {
         // there is no body content provided, skip guessing
         if (null === request.body || undefined === request.body) {
             return next.handle(request);

@@ -33,7 +33,7 @@ export class HttpClient implements HttpClientInterface {
     /**
      * @inheritdoc
      */
-    public get(url: string, headers?: HttpHeadersInterface): Observable<HttpResponseInterface> {
+    public get<T>(url: string, headers?: HttpHeadersInterface): Observable<HttpResponseInterface<T>> {
         let request: HttpRequestInterface = new HttpRequest(url, RequestMethod.GET, headers);
         return this.request(request);
     }
@@ -41,7 +41,7 @@ export class HttpClient implements HttpClientInterface {
     /**
      * @inheritdoc
      */
-    public patch(url: string, data: any, headers?: HttpHeadersInterface): Observable<HttpResponseInterface> {
+    public patch<T>(url: string, data: any, headers?: HttpHeadersInterface): Observable<HttpResponseInterface<T>> {
         let request: HttpRequestInterface = new HttpRequest(url, RequestMethod.PATCH, headers, data);
         return this.request(request);
     }
@@ -49,7 +49,7 @@ export class HttpClient implements HttpClientInterface {
     /**
      * @inheritdoc
      */
-    public post(url: string, data: any, headers?: HttpHeadersInterface): Observable<HttpResponseInterface> {
+    public post<T>(url: string, data: any, headers?: HttpHeadersInterface): Observable<HttpResponseInterface<T>> {
         let request: HttpRequestInterface = new HttpRequest(url, RequestMethod.POST, headers, data);
         return this.request(request);
     }
@@ -58,7 +58,7 @@ export class HttpClient implements HttpClientInterface {
      * @inheritdoc
      */
     // eslint-disable-next-line consistent-return
-    public request(request: HttpRequestInterface): Observable<HttpResponseInterface> {
+    public request<T>(request: HttpRequestInterface): Observable<HttpResponseInterface<T>> {
 
         // there are no interceptors
         if (0 === this._interceptors.length) {
@@ -71,7 +71,7 @@ export class HttpClient implements HttpClientInterface {
         }
 
         let previous: HttpHandlerInterface = new HttpRequestExecutor(
-            (req: HttpRequestInterface): Observable<HttpResponseInterface> => this._adapter.execute(req),
+            (req: HttpRequestInterface): Observable<HttpResponseInterface<T>> => this._adapter.execute(req),
         );
 
         for (let i: number = this._interceptors.length - 1; i >= 0; i--) {

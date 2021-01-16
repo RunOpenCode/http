@@ -10,13 +10,13 @@ import {
  */
 export class HttpRequestExecutor implements HttpHandlerInterface {
 
-    private readonly executor: (request: HttpRequestInterface) => Observable<HttpResponseInterface>;
+    private readonly executor: (request: HttpRequestInterface) => Observable<HttpResponseInterface<any>>;
 
-    public constructor(executor: (request: HttpRequestInterface) => Observable<HttpResponseInterface>) {
+    public constructor(executor: (request: HttpRequestInterface) => Observable<HttpResponseInterface<any>>) {
         this.executor = executor;
     }
 
-    public handle(request: HttpRequestInterface): Observable<HttpResponseInterface> {
+    public handle(request: HttpRequestInterface): Observable<HttpResponseInterface<any>> {
         return this.executor(request);
     }
 

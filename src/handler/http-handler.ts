@@ -17,7 +17,7 @@ export class HttpHandler implements HttpHandlerInterface {
         this.next        = next;
     }
 
-    public handle(request: HttpRequestInterface): Observable<HttpResponseInterface> {
+    public handle(request: HttpRequestInterface): Observable<HttpResponseInterface<any>> {
         return this.interceptor.intercept(request, this.next);
     }
 
