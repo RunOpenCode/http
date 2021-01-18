@@ -4,7 +4,7 @@
         "type": "git",
         "url": "https://github.com/RunOpenCode/http"
     },
-    "version": "0.0.2",
+    "version": "1.0.0",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "scripts": {
@@ -16,7 +16,12 @@
         "LICENSE",
         "README.md"
     ],
-    "peerDependencies": {},
+    "dependencies": {
+        "rxjs": "^6.6.0"
+    },
+    "optionalDependencies": {
+        "@angular/common": ">=9.0"
+    },
     "devDependencies": {
         "@typescript-eslint/eslint-plugin": "^3.6.0",
         "@typescript-eslint/parser": "^3.6.0",
@@ -27,9 +32,6 @@
         "eslint-plugin-react": "^7.21.5",
         "eslint-plugin-react-hooks": "^4.2.0",
         "typescript": "^3.9.6"
-    },
-    "dependencies": {
-        "rxjs": "^6.6.0"
     },
     "license": "MIT",
     "private": false

@@ -1,6 +1,6 @@
 import {
+    AsyncSubject,
     Observable,
-    Subject,
 } from 'rxjs';
 import {
     ClientError,
@@ -32,7 +32,7 @@ export class FetchBrowserAdapter implements HttpAdapterInterface {
             body:    body,
         });
 
-        let observable: Subject<HttpResponseInterface<T>> = new Subject<HttpResponseInterface<T>>();
+        let observable: AsyncSubject<HttpResponseInterface<T>> = new AsyncSubject<HttpResponseInterface<T>>();
 
         promise.then(async (response: Response): Promise<void> => {
             let data: string = await response.text();
