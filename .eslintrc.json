@@ -33,7 +33,7 @@
         "no-underscore-dangle": "off",
         "no-plusplus": "off",
         "no-multi-spaces": [
-            "error",
+            "off",
             {
                 "exceptions": {
                     "Property": true,
