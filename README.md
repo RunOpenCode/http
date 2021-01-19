@@ -31,4 +31,4 @@ TODO:
 
 - Write an adapter for: https://github.com/silkimen/cordova-plugin-advanced-http.
 - Add support for canceling requests (abort).
-
+- Support for DELETE request method.
