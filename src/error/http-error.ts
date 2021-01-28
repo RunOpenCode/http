@@ -1,5 +1,5 @@
 import {
-    HttpHeadersInterface,
+    HttpHeadersInterface, HttpResponseInterface,
     RequestMethod,
 } from '../contract';
 
@@ -7,7 +7,7 @@ import {
  * HTTP Error is value object containing data about occurred error
  * when executing HTTP request.
  */
-export class HttpError<T> extends Error {
+export class HttpError extends Error implements HttpResponseInterface<any> {
 
     private readonly _url: string;
 
@@ -19,9 +19,7 @@ export class HttpError<T> extends Error {
 
     private readonly _message: string;
 
-    private readonly _body: any | null;
-
-    private _json: T;
+    private readonly _content: (() => Promise<any>) | Promise<any>;
 
     public constructor(
         url: string,
@@ -29,7 +27,7 @@ export class HttpError<T> extends Error {
         method: RequestMethod,
         headers: HttpHeadersInterface,
         message: string,
-        body: any | null,
+        content: (() => Promise<any>) | Promise<any>,
     ) {
         super();
         this._url     = url;
@@ -37,7 +35,7 @@ export class HttpError<T> extends Error {
         this._method  = method;
         this._headers = headers;
         this._message = message;
-        this._body    = body;
+        this._content = content;
 
         Object.setPrototypeOf(this, HttpError.prototype);
     }
@@ -78,36 +76,27 @@ export class HttpError<T> extends Error {
     }
 
     /**
-     * Get response body (if any).
+     * @inheritdoc
      */
-    public get body(): T {
-        return this._body;
+    public get content(): Promise<any> {
+        return this._content instanceof Promise ? this._content : this._content();
     }
 
     /**
-     * Get response content as JSON object.
+     * @inheritdoc
      */
-    public get json(): Promise<T | null> {
+    public clone(replace?: Partial<HttpError>): HttpError {
+        // eslint-disable-next-line no-param-reassign
+        replace = replace || {};
 
-        return new Promise<any | null>((resolve: (result: any | null) => void, reject: () => void): void => {
-            if (undefined !== this._json) {
-                resolve(this._json);
-                return;
-            }
-
-            if (null === this._body || undefined === this._body || '' === this._body.trim()) {
-                this._json = null;
-                resolve(this.json);
-                return;
-            }
-
-            try {
-                this._json = JSON.parse(this._body);
-                resolve(this.json);
-            } catch (e) {
-                reject();
-            }
-        });
+        return new HttpError(
+            undefined !== replace.url ? replace.url : this._url,
+            undefined !== replace.status ? replace.status : this._status,
+            undefined !== replace.method ? replace.method : this._method,
+            undefined !== replace.headers ? replace.headers : this._headers,
+            undefined !== replace.message ? replace.message : this._message,
+            undefined !== replace.content ? replace.content : this._content,
+        );
     }
 
 }

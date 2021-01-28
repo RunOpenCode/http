@@ -15,20 +15,18 @@ export class HttpResponse<T> implements HttpResponseInterface<T> {
 
     private readonly _headers: HttpHeadersInterface;
 
-    private readonly _body: any | null;
-
-    private _json: T | null;
+    private readonly _content: (() => Promise<T | null>) | Promise<T | null>;
 
     public constructor(
         url: string,
         status: number,
-        body: any | null,
         headers: HttpHeadersInterface,
+        content: (() => Promise<T | null>) | Promise<T | null>,
     ) {
         this._url     = url;
         this._status  = status;
         this._headers = headers;
-        this._body    = body;
+        this._content = content;
     }
 
     /**
@@ -52,41 +50,26 @@ export class HttpResponse<T> implements HttpResponseInterface<T> {
         return this._headers;
     }
 
-    public get body(): T | null {
-        return this._body;
+    /**
+     * @inheritdoc
+     */
+    public get content(): Promise<T | null> {
+        return this._content instanceof Promise ? this._content : this._content();
     }
 
     /**
      * @inheritdoc
      */
-    public get text(): Promise<string | null> {
-        return Promise.resolve(this._body);
-    }
+    public clone(replace?: Partial<HttpResponseInterface<T>>): HttpResponseInterface<T> {
+        // eslint-disable-next-line no-param-reassign
+        replace = replace || {};
 
-    /**
-     * @inheritdoc
-     */
-    public get json(): Promise<T | null> {
-
-        return new Promise<any | null>((resolve: (result: any | null) => void, reject: () => void): void => {
-            if (undefined !== this._json) {
-                resolve(this._json);
-                return;
-            }
-
-            if (null === this._body || undefined === this._body || '' === this._body.trim()) {
-                this._json = null;
-                resolve(this.json);
-                return;
-            }
-
-            try {
-                this._json = JSON.parse(this._body);
-                resolve(this.json);
-            } catch (e) {
-                reject();
-            }
-        });
+        return new HttpResponse<T>(
+            undefined !== replace.url ? replace.url : this._url,
+            undefined !== replace.status ? replace.status : this._status,
+            undefined !== replace.headers ? replace.headers : this._headers,
+            undefined !== replace.content ? replace.content : this._content,
+        );
     }
 
 }

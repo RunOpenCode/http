@@ -8,6 +8,7 @@ import {
     HttpRequestInterface,
     HttpResponseInterface,
     RequestMethod,
+    HttpRequestOptionsInterface,
 }                              from './contract';
 import {
     HttpHandler,
@@ -33,45 +34,84 @@ export class HttpClient implements HttpClientInterface {
     /**
      * @inheritdoc
      */
-    public get<T>(url: string, headers?: HttpHeadersInterface): Observable<HttpResponseInterface<T>> {
+    public get<T>(
+        url: string,
+        headers?: HttpHeadersInterface,
+        options?: HttpRequestOptionsInterface,
+    ): Observable<HttpResponseInterface<T>> {
         let request: HttpRequestInterface = new HttpRequest(url, RequestMethod.GET, headers);
-        return this.request(request);
+        return this.request(request, options);
     }
 
     /**
      * @inheritdoc
      */
-    public patch<T>(url: string, data: any, headers?: HttpHeadersInterface): Observable<HttpResponseInterface<T>> {
-        let request: HttpRequestInterface = new HttpRequest(url, RequestMethod.PATCH, headers, data);
-        return this.request(request);
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public post<T>(url: string, data: any, headers?: HttpHeadersInterface): Observable<HttpResponseInterface<T>> {
+    public post<T>(
+        url: string,
+        data: any,
+        headers?: HttpHeadersInterface,
+        options?: HttpRequestOptionsInterface,
+    ): Observable<HttpResponseInterface<T>> {
         let request: HttpRequestInterface = new HttpRequest(url, RequestMethod.POST, headers, data);
-        return this.request(request);
+        return this.request(request, options);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public patch<T>(
+        url: string,
+        data: any,
+        headers?: HttpHeadersInterface,
+        options?: HttpRequestOptionsInterface,
+    ): Observable<HttpResponseInterface<T>> {
+        let request: HttpRequestInterface = new HttpRequest(url, RequestMethod.PATCH, headers, data);
+        return this.request(request, options);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public delete<T>(
+        url: string,
+        headers?: HttpHeadersInterface,
+        options?: HttpRequestOptionsInterface,
+    ): Observable<HttpResponseInterface<T>> {
+        let request: HttpRequestInterface = new HttpRequest(url, RequestMethod.DELETE, headers);
+        return this.request(request, options);
     }
 
     /**
      * @inheritdoc
      */
     // eslint-disable-next-line consistent-return
-    public request<T>(request: HttpRequestInterface): Observable<HttpResponseInterface<T>> {
+    public request<T>(
+        request: HttpRequestInterface,
+        options?: HttpRequestOptionsInterface,
+    ): Observable<HttpResponseInterface<T>> {
+
+        // eslint-disable-next-line no-param-reassign
+        options = {
+            ...{
+                responseType:    'json',
+                errorType:       'json',
+                withCredentials: false,
+            },
+            ...options,
+        };
 
         // there are no interceptors
         if (0 === this._interceptors.length) {
-            return this._adapter.execute(request);
+            return this._adapter.execute(request, options);
         }
 
         // there is no need to iterate trough interceptors, we have only one, and it is dummy interceptor.
         if (1 === this._interceptors.length && this._interceptors[0] instanceof VoidHttpInterceptor) {
-            return this._adapter.execute(request);
+            return this._adapter.execute(request, options);
         }
 
         let previous: HttpHandlerInterface = new HttpRequestExecutor(
-            (req: HttpRequestInterface): Observable<HttpResponseInterface<T>> => this._adapter.execute(req),
+            (req: HttpRequestInterface): Observable<HttpResponseInterface<T>> => this._adapter.execute(req, options),
         );
 
         for (let i: number = this._interceptors.length - 1; i >= 0; i--) {

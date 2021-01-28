@@ -24,6 +24,11 @@ export interface HttpRequestInterface {
      * Request body.
      */
     readonly body: any|null;
+
+    /**
+     * Create copy, replacing given properties.
+     */
+    clone(replace?: Partial<HttpRequestInterface>): HttpRequestInterface;
 }
 
 export enum RequestMethod {

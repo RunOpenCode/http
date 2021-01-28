@@ -15,11 +15,17 @@ import {
     HttpHeadersInterface,
     HttpRequestInterface,
     HttpResponseInterface,
+    HttpRequestOptionsInterface,
 } from '../contract';
 
 export class FetchBrowserAdapter implements HttpAdapterInterface {
-
-    public execute<T>(request: HttpRequestInterface): Observable<HttpResponseInterface<T>> {
+    /**
+     * {@inheritdoc}
+     */
+    public execute<T>(
+        request: HttpRequestInterface,
+        options: HttpRequestOptionsInterface,
+    ): Observable<HttpResponseInterface<T>> {
         let body: any = request.body;
 
         if ('application/json' === request.headers.get('Content-Type') && typeof body === 'object') {
@@ -27,23 +33,37 @@ export class FetchBrowserAdapter implements HttpAdapterInterface {
         }
 
         let promise: Promise<Response> = fetch(request.url, {
-            method:  request.method,
-            headers: FetchBrowserAdapter.transform(request.headers),
-            body:    body,
+            method:      request.method,
+            headers:     FetchBrowserAdapter.transform(request.headers),
+            body:        body,
+            credentials: options.withCredentials ? 'include' : undefined,
         });
 
         let observable: AsyncSubject<HttpResponseInterface<T>> = new AsyncSubject<HttpResponseInterface<T>>();
 
         promise.then(async (response: Response): Promise<void> => {
-            let data: string = await response.text();
 
             if (response.status >= 200 && response.status < 300) {
-                observable.next(new HttpResponse(
+                if (204 === response.status) {
+                    observable.next(new HttpResponse<T>(
+                        response.url,
+                        response.status,
+                        new HttpHeaders(FetchBrowserAdapter.reverse(response.headers)),
+                        Promise.resolve(null),
+                    ));
+
+                    observable.complete();
+
+                    return;
+                }
+
+                observable.next(new HttpResponse<T>(
                     response.url,
                     response.status,
-                    data,
                     new HttpHeaders(FetchBrowserAdapter.reverse(response.headers)),
+                    FetchBrowserAdapter.getContentResolver(response, options.responseType),
                 ));
+
                 observable.complete();
 
                 return;
@@ -55,10 +75,12 @@ export class FetchBrowserAdapter implements HttpAdapterInterface {
                 request.method,
                 new HttpHeaders(FetchBrowserAdapter.reverse(response.headers)),
                 response.statusText,
-                data,
+                FetchBrowserAdapter.getContentResolver(response, options.errorType),
             ));
+
             observable.complete();
         });
+
         promise.catch((error: Error) => {
             // NOTE: fetch can not detect CORS errors.
             observable.error(new ClientError(
@@ -101,6 +123,26 @@ export class FetchBrowserAdapter implements HttpAdapterInterface {
         });
 
         return result;
+    }
+
+    private static getContentResolver(response: Response, type: 'arraybuffer' | 'blob' | 'json' | 'text'): () => Promise<any> {
+        if ('arraybuffer' === type) {
+            return response.arrayBuffer;
+        }
+
+        if ('blob' === type) {
+            return response.blob;
+        }
+
+        if ('json' === type) {
+            return response.json;
+        }
+
+        if ('text' === type) {
+            return response.text;
+        }
+
+        throw new Error(`Unsupported type "${type}" provided.`);
     }
 
 }

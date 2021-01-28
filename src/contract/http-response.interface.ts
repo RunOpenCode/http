@@ -22,17 +22,12 @@ export interface HttpResponseInterface<T> {
     readonly headers: HttpHeadersInterface;
 
     /**
-     * Get response body.
+     * Get response content.
      */
-    readonly body: T | null;
+    readonly content: Promise<T>;
 
     /**
-     * Get response content as text.
+     * Create copy, replacing given properties.
      */
-    readonly text: Promise<string | null>;
-
-    /**
-     * Get response content as JSON object.
-     */
-    readonly json: Promise<T | null>;
+    clone(replace?: Partial<HttpResponseInterface<T>>): HttpResponseInterface<T>;
 }

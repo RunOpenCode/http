@@ -50,4 +50,19 @@ export class HttpRequest implements HttpRequestInterface {
         return this._body;
     }
 
+    /**
+     * @inheritdoc
+     */
+    public clone(replace?: Partial<HttpRequestInterface>): HttpRequestInterface {
+        // eslint-disable-next-line no-param-reassign
+        replace = replace || {};
+
+        return new HttpRequest(
+            undefined !== replace.url ? replace.url : this._url,
+            undefined !== replace.method ? replace.method : this._method,
+            undefined !== replace.headers ? replace.headers : this._headers,
+            undefined !== replace.body ? replace.body : this._body,
+        );
+    }
+
 }
