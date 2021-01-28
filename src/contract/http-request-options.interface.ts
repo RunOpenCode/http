@@ -4,14 +4,14 @@ export interface HttpRequestOptionsInterface {
      *
      * Default is "json".
      */
-    responseType: 'arraybuffer' | 'blob' | 'json' | 'text';
+    responseType?: 'arraybuffer' | 'blob' | 'json' | 'text';
 
     /**
      * How to serialize error response content.
      *
      * Default is "json".
      */
-    errorType: 'json' | 'text';
+    errorType?: 'json' | 'text';
 
     /**
      * Should send credentials with request.
