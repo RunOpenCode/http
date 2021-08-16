@@ -127,19 +127,19 @@ export class FetchBrowserAdapter implements HttpAdapterInterface {
 
     private static getContentResolver(response: Response, type: 'arraybuffer' | 'blob' | 'json' | 'text'): () => Promise<any> {
         if ('arraybuffer' === type) {
-            return response.arrayBuffer;
+            return response.arrayBuffer.bind(response);
         }
 
         if ('blob' === type) {
-            return response.blob;
+            return response.blob.bind(response);
         }
 
         if ('json' === type) {
-            return response.json;
+            return response.json.bind(response);
         }
 
         if ('text' === type) {
-            return response.text;
+            return response.text.bind(response);
         }
 
         throw new Error(`Unsupported type "${type}" provided.`);
