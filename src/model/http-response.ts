@@ -53,7 +53,7 @@ export class HttpResponse<T> implements HttpResponseInterface<T> {
     /**
      * @inheritdoc
      */
-    public get content(): Promise<T | null> {
+    public get content(): Promise<T> {
         return this._content instanceof Promise ? this._content : this._content();
     }
 
