@@ -15,7 +15,7 @@ export class HttpRequest implements HttpRequestInterface {
 
     private readonly _body: any | null;
 
-    public constructor(url: string, method: RequestMethod, headers?: HttpHeadersInterface, body?: any | null) {
+    public constructor(url: string, method: RequestMethod, headers?: HttpHeadersInterface | null, body?: any | null) {
         this._url     = url;
         this._method  = method;
         this._headers = headers || new HttpHeaders();

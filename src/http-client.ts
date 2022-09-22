@@ -36,8 +36,8 @@ export class HttpClient implements HttpClientInterface {
      */
     public get<T>(
         url: string,
-        headers?: HttpHeadersInterface,
-        options?: HttpRequestOptionsInterface,
+        headers?: HttpHeadersInterface | null,
+        options?: HttpRequestOptionsInterface | null,
     ): Observable<HttpResponseInterface<T>> {
         let request: HttpRequestInterface = new HttpRequest(url, RequestMethod.GET, headers);
         return this.request(request, options);
@@ -49,8 +49,8 @@ export class HttpClient implements HttpClientInterface {
     public post<T>(
         url: string,
         data: any,
-        headers?: HttpHeadersInterface,
-        options?: HttpRequestOptionsInterface,
+        headers?: HttpHeadersInterface | null,
+        options?: HttpRequestOptionsInterface | null,
     ): Observable<HttpResponseInterface<T>> {
         let request: HttpRequestInterface = new HttpRequest(url, RequestMethod.POST, headers, data);
         return this.request(request, options);
@@ -62,8 +62,8 @@ export class HttpClient implements HttpClientInterface {
     public patch<T>(
         url: string,
         data: any,
-        headers?: HttpHeadersInterface,
-        options?: HttpRequestOptionsInterface,
+        headers?: HttpHeadersInterface | null,
+        options?: HttpRequestOptionsInterface | null,
     ): Observable<HttpResponseInterface<T>> {
         let request: HttpRequestInterface = new HttpRequest(url, RequestMethod.PATCH, headers, data);
         return this.request(request, options);
@@ -74,8 +74,8 @@ export class HttpClient implements HttpClientInterface {
      */
     public delete<T>(
         url: string,
-        headers?: HttpHeadersInterface,
-        options?: HttpRequestOptionsInterface,
+        headers?: HttpHeadersInterface | null,
+        options?: HttpRequestOptionsInterface | null,
     ): Observable<HttpResponseInterface<T>> {
         let request: HttpRequestInterface = new HttpRequest(url, RequestMethod.DELETE, headers);
         return this.request(request, options);
@@ -87,7 +87,7 @@ export class HttpClient implements HttpClientInterface {
     // eslint-disable-next-line consistent-return
     public request<T>(
         request: HttpRequestInterface,
-        options?: HttpRequestOptionsInterface,
+        options?: HttpRequestOptionsInterface | null,
     ): Observable<HttpResponseInterface<T>> {
 
         // eslint-disable-next-line no-param-reassign
@@ -97,7 +97,7 @@ export class HttpClient implements HttpClientInterface {
                 errorType:       'json',
                 withCredentials: false,
             },
-            ...options,
+            ...(options || {}),
         };
 
         // there are no interceptors

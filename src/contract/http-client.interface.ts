@@ -14,8 +14,8 @@ export interface HttpClientInterface {
      */
     get<T>(
         url: string,
-        headers?: HttpHeadersInterface,
-        options?: HttpRequestOptionsInterface,
+        headers?: HttpHeadersInterface | null,
+        options?: HttpRequestOptionsInterface | null,
     ): Observable<HttpResponseInterface<T>>;
 
     /**
@@ -24,8 +24,8 @@ export interface HttpClientInterface {
     post<T>(
         url: string,
         data: any | null,
-        headers?: HttpHeadersInterface,
-        options?: HttpRequestOptionsInterface,
+        headers?: HttpHeadersInterface | null,
+        options?: HttpRequestOptionsInterface | null,
     ): Observable<HttpResponseInterface<T>>;
 
     /**
@@ -34,8 +34,8 @@ export interface HttpClientInterface {
     patch<T>(
         url: string,
         data: any | null,
-        headers?: HttpHeadersInterface,
-        options?: HttpRequestOptionsInterface,
+        headers?: HttpHeadersInterface | null,
+        options?: HttpRequestOptionsInterface | null,
     ): Observable<HttpResponseInterface<T>>;
 
     /**
@@ -43,8 +43,8 @@ export interface HttpClientInterface {
      */
     delete<T>(
         url: string,
-        headers?: HttpHeadersInterface,
-        options?: HttpRequestOptionsInterface,
+        headers?: HttpHeadersInterface | null,
+        options?: HttpRequestOptionsInterface | null,
     ): Observable<HttpResponseInterface<T>>
 
     /**
@@ -52,6 +52,6 @@ export interface HttpClientInterface {
      */
     request<T>(
         request: HttpRequestInterface,
-        options?: HttpRequestOptionsInterface,
+        options?: HttpRequestOptionsInterface | null,
     ): Observable<HttpResponseInterface<T>>;
 }
