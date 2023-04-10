@@ -17,7 +17,7 @@ import {
 
 export interface Configuration {
 
-    adapter: 'angular' | 'fetch' | Type<never> | InjectionToken<HttpAdapterInterface>;
+    adapter: 'angular' | 'fetch' | Type<unknown> | InjectionToken<HttpAdapterInterface>;
 
     interceptors: Type<unknown>[];
 
@@ -32,7 +32,7 @@ export function sanitize(configuration?: Partial<Configuration>): Configuration 
     };
 }
 
-export function provideAdapter(adapter: 'angular' | 'fetch' | Type<never> | InjectionToken<HttpAdapterInterface>): Provider {
+export function provideAdapter(adapter: 'angular' | 'fetch' | Type<unknown> | InjectionToken<HttpAdapterInterface>): Provider {
     if ('angular' === adapter) {
         return {
             provide:    NGX_HTTP_CLIENT_ADAPTER,

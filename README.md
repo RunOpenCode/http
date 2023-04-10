@@ -12,3 +12,18 @@ Monorepository contains following packages:
   for `@runopencode/http`.
 
 Packages are published to NPM registry under `@runopencode` scope.
+
+## Subprojects
+
+### @runopencode/http
+
+- [Introduction](packages/http/README.md)
+- [Features](packages/http/README.md#features)
+- [Motivation](packages/http/README.md#motivation)
+    - [Examples](packages/http/README.md#examples)
+        - [Cordova/Capacitor/Ionic HTTP client](packages/http/README.md#cordovacapacitorionic-http-client)
+        - [Web components with HTTP client](packages/http/README.md#web-components-with-http-client)
+- [Available adapters/integrations](packages/http/README.md#available-adaptersintegrations)
+- [Learn more](packages/http/README.md#learn-more)
+- [External resources](packages/http/README.md#external-resources)
+
