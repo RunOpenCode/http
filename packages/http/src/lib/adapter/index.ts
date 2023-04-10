@@ -1,0 +1,1 @@
+export { FetchBrowserAdapter } from './fetch';

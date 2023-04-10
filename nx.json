@@ -1,18 +1,28 @@
 {
-  "extends": "nx/presets/npm.json",
-  "$schema": "./node_modules/nx/schemas/nx-schema.json",
-  "tasksRunnerOptions": {
-    "default": {
-      "runner": "@nrwl/nx-cloud",
-      "options": {
-        "cacheableOperations": [
-          "build",
-          "lint",
-          "test",
-          "e2e"
-        ],
-        "accessToken": "ZWFlYTNjNzQtMTM3Yi00ZTM4LWI4MDktNDRmZGVhMmFmZTI1fHJlYWQtd3JpdGU="
-      }
+    "extends": "nx/presets/npm.json",
+    "$schema": "./node_modules/nx/schemas/nx-schema.json",
+    "targetDefaults": {
+        "test": {
+            "inputs": [
+                "default",
+                "^default",
+                "{workspaceRoot}/jest.preset.js"
+            ]
+        }
+    },
+    "generators": {
+        "@nrwl/angular:application": {
+            "style": "css",
+            "linter": "eslint",
+            "unitTestRunner": "jest",
+            "e2eTestRunner": "none"
+        },
+        "@nrwl/angular:library": {
+            "linter": "eslint",
+            "unitTestRunner": "jest"
+        },
+        "@nrwl/angular:component": {
+            "style": "css"
+        }
     }
-  }
 }

@@ -1,0 +1,119 @@
+{
+    "extends": [
+        "eslint-config-airbnb",
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended"
+    ],
+    "plugins": [
+        "@typescript-eslint"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "env": {
+        "browser": true,
+        "jasmine": true
+    },
+    "settings": {
+        "react": {
+            "version": "18"
+        }
+    },
+    "rules": {
+        "indent": [
+            "error",
+            4,
+            {
+                "SwitchCase": 1
+            }
+        ],
+        "no-prototype-builtins": "off",
+        "yoda": "off",
+        "prefer-const": "off",
+        "no-unused-vars": "off",
+        "no-underscore-dangle": "off",
+        "no-plusplus": "off",
+        "no-multi-spaces": [
+            "off",
+            {
+                "exceptions": {
+                    "Property": true,
+                    "VariableDeclarator": true,
+                    "ImportDeclaration": true,
+                    "AssignmentExpression": true
+                }
+            }
+        ],
+        "key-spacing": [
+            "error",
+            {
+                "align": "value"
+            }
+        ],
+        "max-len": [
+            "error",
+            {
+                "code": 150,
+                "ignoreStrings": true
+            }
+        ],
+        "padded-blocks": [
+            "error",
+            {
+                "classes": "always"
+            }
+        ],
+        "object-curly-newline": [
+            "error",
+            {
+                "ObjectExpression": {
+                    "multiline": true
+                },
+                "ObjectPattern": {
+                    "multiline": true
+                },
+                "ImportDeclaration": {
+                    "multiline": true,
+                    "minProperties": 5
+                },
+                "ExportDeclaration": {
+                    "multiline": true,
+                    "minProperties": 5
+                }
+            }
+        ],
+        "no-multiple-empty-lines": [
+            "error",
+            {
+                "max": 1
+            }
+        ],
+        "prefer-destructuring": "off",
+        "class-methods-use-this": "off",
+        "object-shorthand": [
+            "error",
+            "never"
+        ],
+        "semi": "off",
+        "no-extra-semi": "off",
+        "@typescript-eslint/semi": "error",
+        "@typescript-eslint/no-extra-semi": "error",
+        "@typescript-eslint/no-unused-vars": "error",
+        "@typescript-eslint/explicit-function-return-type": "error",
+        "@typescript-eslint/explicit-member-accessibility": "error",
+        "@typescript-eslint/typedef": [
+            "error",
+            {
+                "variableDeclaration": true,
+                "arrayDestructuring": true,
+                "objectDestructuring": true,
+                "arrowParameter": true,
+                "memberVariableDeclaration": true,
+                "parameter": true,
+                "propertyDeclaration": true,
+                "variableDeclarationIgnoreFunction": true
+            }
+        ],
+        "import/prefer-default-export": "off",
+        "import/no-unresolved": "off",
+        "import/extensions": "off"
+    }
+}
