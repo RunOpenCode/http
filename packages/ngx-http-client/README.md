@@ -61,7 +61,7 @@ properties:
   injection token to be used by HTTP client. Make sure that you register your interceptors as multi-injection
   tokens (`multi: true`).
 
-## How to use
+## Usage
 
 Once you have imported `NgxHttpClientModule` into your application, you can inject `HttpClientInterface` into your
 classes and use it to execute HTTP requests.
@@ -95,3 +95,7 @@ export class PostRepository {
 
 }
 ```
+
+## TODO
+
+- [ ] Write tests.

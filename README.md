@@ -27,3 +27,10 @@ Packages are published to NPM registry under `@runopencode` scope.
 - [Learn more](packages/http/README.md#learn-more)
 - [External resources](packages/http/README.md#external-resources)
 
+### @runopencode/ngx-http-client
+
+- [Introduction](packages/ngx-http-client/README.md)
+- [Installation](packages/ngx-http-client/README.md#installation)
+- [Configuration](packages/ngx-http-client/README.md#configuration)
+- [Available injection tokens](packages/ngx-http-client/README.md#available-injection-tokens)
+- [Usage](packages/ngx-http-client/README.md#usage)

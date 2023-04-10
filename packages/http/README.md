@@ -79,6 +79,6 @@ coupled with Angular framework. However, with this library, it was possible to a
 
 ## TODO:
 
-- Add shortcuts for other HTTP request methods.
-- Write an adapter for: https://github.com/silkimen/cordova-plugin-advanced-http.
-- Write unit tests.
+- [ ] Add shortcuts for other HTTP request methods.
+- [ ] Write an adapter for: https://github.com/silkimen/cordova-plugin-advanced-http.
+- [ ] Write unit tests.

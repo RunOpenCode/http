@@ -1,6 +1,6 @@
 {
     "name": "@runopencode/ngx-http-client",
-    "version": "4.0.0-beta.2",
+    "version": "4.0.0",
     "repository": {
         "type": "git",
         "url": "https://github.com/RunOpenCode/http"
@@ -9,7 +9,7 @@
         "tslib": "^2.3.0"
     },
     "peerDependencies": {
-        "@runopencode/http": "^4.0.0-beta.2",
+        "@runopencode/http": "^4.0.0",
         "@angular/common": "^12.2",
         "@angular/core": "^12.2",
         "rxjs": ">=6.0"
