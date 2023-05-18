@@ -60,7 +60,9 @@ export class AngularHttpAdapter implements HttpAdapterInterface {
             ._http
             .request(request.method, request.url, requestOptions)
             // eslint-disable-next-line max-len
-            .pipe(catchError((error: AngularHttpErrorResponse): Observable<never> => throwError((): Error => transformError(request, error, options))))
+            .pipe(catchError((error: AngularHttpErrorResponse): Observable<never> => throwError((): Error => {
+                return transformError(request, error, options);
+            })))
             .pipe(map((response: AngularHttpResponse<unknown>) => transformResponse<T>(response)));
     }
 
