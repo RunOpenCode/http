@@ -1,12 +1,10 @@
-import { Observable }  from 'rxjs';
-import { HttpRequest } from '../model';
+import { Observable } from 'rxjs';
 import {
     HttpHandlerInterface,
-    HttpHeadersInterface,
     HttpInterceptorInterface,
     HttpRequestInterface,
     HttpResponseInterface,
-}                      from '../contract';
+}                     from '../contract';
 
 /**
  * Content type interceptor will analyze content type header and provided
@@ -32,36 +30,21 @@ export class ContentTypeInterceptor implements HttpInterceptorInterface {
         }
 
         if (request.body instanceof FormData) {
-            let headers: HttpHeadersInterface = request.headers.append('Content-Type', 'multipart/form-data');
-
-            return next.handle(new HttpRequest(
-                request.url,
-                request.method,
-                headers,
-                request.body,
-            ));
+            return next.handle(request.clone({
+                headers: request.headers.append('Content-Type', 'multipart/form-data'),
+            }));
         }
 
         if ('object' === typeof request.body) {
-            let headers: HttpHeadersInterface = request.headers.append('Content-Type', 'application/json');
-
-            return next.handle(new HttpRequest(
-                request.url,
-                request.method,
-                headers,
-                request.body,
-            ));
+            return next.handle(request.clone({
+                headers: request.headers.append('Content-Type', 'application/json'),
+            }));
         }
 
         if ('string' === typeof request.body) {
-            let headers: HttpHeadersInterface = request.headers.append('Content-Type', 'plain/text');
-
-            return next.handle(new HttpRequest(
-                request.url,
-                request.method,
-                headers,
-                request.body,
-            ));
+            return next.handle(request.clone({
+                headers: request.headers.append('Content-Type', 'plain/text'),
+            }));
         }
 
         // unable to guess, just pass it along.
