@@ -11,8 +11,8 @@ import { HttpResponse } from '../../model';
 import {
     HttpAdapterInterface,
     HttpRequestInterface,
-    HttpResponseInterface,
     HttpRequestOptionsInterface,
+    HttpResponseInterface,
 }                       from '../../contract';
 import {
     createContentResolver,
@@ -41,6 +41,8 @@ export class FetchBrowserAdapter implements HttpAdapterInterface {
             });
 
             promise.then(async (response: Response): Promise<void> => {
+                abortController = null;
+
                 if (response.ok) {
                     observer.next(new HttpResponse<T>(
                         response.url,
@@ -63,6 +65,8 @@ export class FetchBrowserAdapter implements HttpAdapterInterface {
                 ));
 
             }).catch((error: Error): void => {
+                abortController = null;
+
                 // If the request was aborted, we don't want to throw an error.
                 if (error instanceof DOMException && 'AbortError' === error.name) {
                     if (!observer.closed) {
@@ -78,8 +82,6 @@ export class FetchBrowserAdapter implements HttpAdapterInterface {
                     request.headers,
                     error.message,
                 ));
-            }).finally((): void => {
-                abortController = null;
             });
 
             return (): void => {
