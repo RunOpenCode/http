@@ -2,7 +2,11 @@ import { HttpAdapterInterface }        from './http-adapter.interface';
 import { HttpClientInterface }         from './http-client.interface';
 import { HttpHandlerInterface }        from './http-handler.interface';
 import { HttpHeadersInterface }        from './http-headers.interface';
-import { HttpInterceptorInterface }    from './http-interceptor.interface';
+import {
+    HttpInterceptor,
+    HttpInterceptorFunction,
+    HttpInterceptorInterface,
+}                                      from './http-interceptor.interface';
 import { HttpResponseInterface }       from './http-response.interface';
 import {
     HttpRequestInterface,
@@ -15,6 +19,8 @@ export {
     HttpClientInterface,
     HttpHandlerInterface,
     HttpInterceptorInterface,
+    HttpInterceptorFunction,
+    HttpInterceptor,
     HttpResponseInterface,
     HttpHeadersInterface,
     HttpRequestInterface,

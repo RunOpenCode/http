@@ -18,3 +18,13 @@ export interface HttpInterceptorInterface<T = unknown> {
      */
     intercept(request: HttpRequestInterface, next: HttpHandlerInterface): Observable<HttpResponseInterface<T>>;
 }
+
+/**
+ * Beside OO style, you may also use functional style of interceptors.
+ */
+export type HttpInterceptorFunction<T = unknown> = (request: HttpRequestInterface, next: HttpHandlerInterface) => Observable<HttpResponseInterface<T>>;
+
+/**
+ * Interceptor may be either object-oriented or functional.
+ */
+export type HttpInterceptor<T = unknown> = HttpInterceptorInterface<T> | HttpInterceptorFunction<T>;

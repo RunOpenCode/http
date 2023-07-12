@@ -16,7 +16,7 @@ Within your Angular project, you can import `HttpClientModule` from `@runopencod
 it.
 
 ```typescript
-import { NgxHttpClientModule } from '@runopencode/ngx-http-client';
+import {NgxHttpClientModule} from '@runopencode/ngx-http-client';
 
 @NgModule({
     imports: [
@@ -37,16 +37,19 @@ top application module).
 `NgxHttpClientModule.forRoot` method accepts optional configuration object. Configuration object has the following
 properties:
 
-- `adapter`, default value is `angular` - by default, Angular's `HttpClient` is used as HTTP adapter. However, you may
-  choose to use `fetch` adapter instead, or any other adapter which implements `HttpAdapterInterface`
-  from `@runopencode/http` package. If you want to use `fetch` adapter, you should pass `fetch` as value for this
-  configuration parameter. Otherwise, you may register your adapter within Angular's DI container and pass its
-  name/injection token as a value.
+- `adapter`, default value is `fetch` - by default, `fetch` API is used as HTTP adapter. However, you may choose to use
+  `angular` adapter instead, or any other adapter which implements `HttpAdapterInterface`
+  from `@runopencode/http` package. In that case, you must register your adapter within Angular's DI container and pass
+  its name/injection token as a value.
 - `interceptors`, default value is empty array - you may create your own interceptors and register them here.
   Interceptors must be decorated with `@Injectable` decorator and must implement `HttpInterceptorInterface` from
-  `@runopencode/http` package. For each provided interceptor, module will register it within Angular's DI container.
+  `@runopencode/http` package. For each provided interceptor, module will register it within Angular's DI container. You
+  may also use functions as interceptors. In that case, function will be registered as interceptor within Angular's DI.
+  Do note that functional interceptors are useful only for simple tasks, and if you need to inject some dependencies
+  into your interceptor, you should use class-based interceptor instead (function with the state, or using `inject()`
+  does not conform with functional programing paradigm).
 - `guessContentType`, default value is `true` - when set to `true`, `ContentTypeInterceptor` from `@runopencode/http`
-  package will be registered as interceptor automaticaly. This interceptor will set `Content-Type` header based on
+  package will be registered as interceptor automatically. This interceptor will set `Content-Type` header based on
   request body.
 
 ## Available injection tokens
@@ -76,9 +79,9 @@ import {
     Injectable,
 } from '@angular/core';
 
-import { NGX_HTTP_CLIENT } from '@runopencode/ngx-http-client';
-import { Observable }      from 'rxjs';
-import { map }             from 'rxjs/operators';
+import {NGX_HTTP_CLIENT} from '@runopencode/ngx-http-client';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Injectable()
 export class PostRepository {

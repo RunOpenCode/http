@@ -38,12 +38,12 @@ import {
     HttpRequestInterface,
     HttpHandlerInterface,
     HttpResponseInterface,
-}                     from '@runopencode/http';
-import { Observable } from 'rxjs';
+} from '@runopencode/http';
+import {Observable} from 'rxjs';
 
 export class RequestInterceptor implements HttpInterceptorInterface {
 
-    public intercept(request: HttpRequestInterface, next: HttpHandlerInterface): Observable<HttpResponseInterface<T>> {
+    public intercept(request: HttpRequestInterface, next: HttpHandlerInterface): Observable<HttpResponseInterface<unknown>> {
         let modified: HttpRequestInterface = request.clone({
             headers: request.headers.append('X-My-Header', 'value'),
         });
@@ -63,16 +63,43 @@ import {
     HttpRequestInterface,
     HttpHandlerInterface,
     HttpResponseInterface,
-}                     from '@runopencode/http';
-import { Observable } from 'rxjs';
-import { tap }        from 'rxjs/operators';
+} from '@runopencode/http';
+import {Observable} from 'rxjs';
+import {tap} from 'rxjs/operators';
 
-export class ResponseInterceptor implements HttpInterceptorInterface {
+export class ResponseInterceptor implements HttpInterceptorInterface<unknown> {
 
-    public intercept(request: HttpRequestInterface, next: HttpHandlerInterface): Observable<HttpResponseInterface<T>> {
-        return next.handle(request).pipe(tap((response: HttpResponseInterface<T>): void => {
+    public intercept(request: HttpRequestInterface, next: HttpHandlerInterface): Observable<HttpResponseInterface<unknown>> {
+        return next.handle(request).pipe(tap((response: HttpResponseInterface<unknown>): void => {
             console.log(response.body);
         }));
     }
 }
 ```
+
+## Functional interceptors
+
+Besides creating interceptors by implementing `HttpInterceptorInterface`, you can also create them by using functions.
+It is quite trivial, function type is defined as `HttpInterceptorFunction<T>` and it has the same signature
+as `intercept()` method of `HttpInterceptorInterface` interface.
+
+```typescript
+import {
+    HttpInterceptorFunction,
+    HttpRequestInterface,
+    HttpHandlerInterface,
+    HttpResponseInterface
+} from '@runopencode/http';
+
+export function intercept(request: HttpRequestInterface, next: HttpHandlerInterface): Observable<HttpResponseInterface<unknown>> {
+    let modified: HttpRequestInterface = request.clone({
+        headers: request.headers.append('X-Application-Identifier', 'Foo'),
+    });
+
+    return next.handle(modified);
+};
+```
+
+Of course, functional interceptors are useful only if you want to do something simple, like adding header to request, in
+general, where state is not involved (pure functions). If state is involved, just use class-based interceptors and
+object-oriented programming (function with the state is not functional programming).

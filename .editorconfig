@@ -120,7 +120,7 @@ ij_xml_space_inside_empty_tag = false
 ij_xml_text_wrap = normal
 ij_xml_use_custom_settings = false
 
-[{*.ats,*.ts}]
+[{*.ats,*.ts,*.tsx}]
 ij_continuation_indent_size = 4
 ij_visual_guides = none
 ij_typescript_align_imports = true
@@ -288,6 +288,7 @@ ij_typescript_var_declaration_wrap = normal
 ij_typescript_while_brace_force = never
 ij_typescript_while_on_new_line = false
 ij_typescript_wrap_comments = false
+ij_html_space_inside_empty_tag = true
 
 [{*.bash,*.bats,*.dash,*.ksh,*.mksh,*.sh,*.zsh,.bash_aliases,.bash_logout,.bash_profile,.bashrc,.profile}]
 indent_size = 2

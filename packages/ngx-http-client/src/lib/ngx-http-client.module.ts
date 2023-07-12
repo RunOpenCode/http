@@ -1,8 +1,8 @@
+import { HttpClientModule } from '@angular/common/http';
 import {
     ModuleWithProviders,
     NgModule,
 }                           from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
 import {
     HttpAdapterInterface,
     HttpClient,
@@ -37,7 +37,7 @@ export class NgxHttpClientModule {
             providers: [
                 {
                     provide:  NGX_HTTP_CLIENT_INTERCEPTOR,
-                    useClass: VoidHttpInterceptor,
+                    useValue: new VoidHttpInterceptor(),
                     multi:    true,
                 },
                 {
@@ -58,7 +58,10 @@ export class NgxHttpClientModule {
                     useExisting: HttpClient,
                 },
                 provideAdapter(sanitized.adapter),
-                provideInterceptors(sanitized.interceptors, sanitized.guessContentType),
+                provideInterceptors(
+                    sanitized.interceptors,
+                    sanitized.guessContentType,
+                ),
             ],
         };
     }

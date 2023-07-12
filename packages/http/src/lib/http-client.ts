@@ -1,21 +1,25 @@
-import { Observable }          from 'rxjs';
+import { Observable }  from 'rxjs';
 import {
     HttpAdapterInterface,
     HttpClientInterface,
     HttpHandlerInterface,
     HttpHeadersInterface,
+    HttpInterceptor,
     HttpInterceptorInterface,
     HttpRequestInterface,
+    HttpRequestOptionsInterface,
     HttpResponseInterface,
     RequestMethod,
-    HttpRequestOptionsInterface,
-}                              from './contract';
+}                      from './contract';
 import {
     HttpHandler,
     HttpRequestExecutor,
-}                              from './handler';
-import { VoidHttpInterceptor } from './interceptor';
-import { HttpRequest }         from './model';
+}                      from './handler';
+import {
+    convertInterceptor,
+    VoidHttpInterceptor,
+}                      from './interceptor';
+import { HttpRequest } from './model';
 
 export class HttpClient implements HttpClientInterface {
 
@@ -25,9 +29,9 @@ export class HttpClient implements HttpClientInterface {
 
     public constructor(
         adapter: HttpAdapterInterface,
-        interceptors: HttpInterceptorInterface[] = [],
+        interceptors: HttpInterceptor[] = [],
     ) {
-        this._interceptors = interceptors;
+        this._interceptors = interceptors.map((interceptor: HttpInterceptor): HttpInterceptorInterface => convertInterceptor(interceptor));
         this._adapter      = adapter;
     }
 
