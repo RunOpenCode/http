@@ -5,8 +5,8 @@ inspired by Angular's HTTP service with a goal to provide framework-agnostic HTT
 Angular ecosystem.
 
 However, library is not perfect, it is intended to cover the vast majority of use cases, GET, POST, PATCH, DELETE...
-requests, commonly used for REST and REST-like APIs. However, edge cases might occur which are not covered by this
-library. For those, PRs are welcome.
+requests, commonly used for REST and REST-like APIs. Edge cases might occur which are not covered by this library. For
+those, PRs are welcome.
 
 ## Features
 
