@@ -10,6 +10,16 @@ import { HttpResponseInterface }       from './http-response.interface';
 export interface HttpClientInterface {
 
     /**
+     * Execute HEAD request on given URL.
+     */
+    head<T>(
+        url: string,
+        data: unknown,
+        headers?: HttpHeadersInterface | null | undefined,
+        options?: HttpRequestOptionsInterface | null | undefined,
+    ): Observable<HttpResponseInterface<T>>;
+    
+    /**
      * Execute GET request on given URL.
      */
     get<T>(
@@ -29,9 +39,19 @@ export interface HttpClientInterface {
     ): Observable<HttpResponseInterface<T>>;
 
     /**
-     * Execute POST request on given URL.
+     * Execute PATCH request on given URL.
      */
     patch<T>(
+        url: string,
+        data: unknown,
+        headers?: HttpHeadersInterface | null | undefined,
+        options?: HttpRequestOptionsInterface | null | undefined,
+    ): Observable<HttpResponseInterface<T>>;
+
+    /**
+     * Execute PUT request on given URL.
+     */
+    put<T>(
         url: string,
         data: unknown,
         headers?: HttpHeadersInterface | null | undefined,

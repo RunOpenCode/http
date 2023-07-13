@@ -38,6 +38,19 @@ export class HttpClient implements HttpClientInterface {
     /**
      * {@inheritdoc}
      */
+    public head<T>(
+        url: string,
+        data: unknown,
+        headers?: HttpHeadersInterface | null | undefined,
+        options?: HttpRequestOptionsInterface | null | undefined,
+    ): Observable<HttpResponseInterface<T>> {
+        let request: HttpRequestInterface = new HttpRequest(url, RequestMethod.HEAD, headers, data);
+        return this.request(request, options);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public get<T>(
         url: string,
         headers?: HttpHeadersInterface | null | undefined,
@@ -70,6 +83,19 @@ export class HttpClient implements HttpClientInterface {
         options?: HttpRequestOptionsInterface | null | undefined,
     ): Observable<HttpResponseInterface<T>> {
         let request: HttpRequestInterface = new HttpRequest(url, RequestMethod.PATCH, headers, data);
+        return this.request(request, options);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public put<T>(
+        url: string,
+        data: unknown,
+        headers?: HttpHeadersInterface | null | undefined,
+        options?: HttpRequestOptionsInterface | null | undefined,
+    ): Observable<HttpResponseInterface<T>> {
+        let request: HttpRequestInterface = new HttpRequest(url, RequestMethod.PUT, headers, data);
         return this.request(request, options);
     }
 

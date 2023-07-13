@@ -14,8 +14,8 @@ without dependency injection).
 
 ```typescript
 // file http-client.ts
-import { 
-    HttpClient, 
+import {
+    HttpClient,
     HttpClientInterface,
     FetchBrowserAdapter,
     ContentTypeInterceptor,
@@ -23,18 +23,47 @@ import {
 
 // you may export this instance, however, it is better to export functions and encapsulate instance inside
 const httpClient: HttpClientInterface = new HttpClient(
-    new FetchBrowserAdapter(),
-    [
-        new ContentTypeInterceptor(),   // optional interceptor, which sets Content-Type header
-        // ... other interceptors
-    ],    
+        new FetchBrowserAdapter(),
+        [
+            new ContentTypeInterceptor(),   // optional interceptor, which sets Content-Type header
+            // ... other interceptors
+        ],
 );
 
+```
+Note that you have exposed function for creating HTTP client, which you can use in your application to create client. 
+Function will create HTTP client using `fetch` adapter and `ContentTypeInterceptor` interceptor. Of course, you may pass
+your own adapter implementation, as well as any number of interceptors.
+
+```typescript
+// file http-client.ts
+import { 
+    createHttpClient,
+    HttpClientInterface,
+} from './create-http-client';
+
+const httpClient: HttpClientInterface = createHttpClient();
+```
+
+You may use client instance directly and invoke its methods. If you prefer to have functions for each HTTP method, you
+may export them from your file, as shown below:
+
+```typescript
+// file http-client.ts
+import {
+    createHttpClient,
+    HttpClientInterface,
+} from './create-http-client';
+
+const httpClient: HttpClientInterface = createHttpClient();
+
 // export functions which will be used in your application
-export const get = client.get.bind(client);
-export const post = client.post.bind(client);
-export const patch = client.patch.bind(client);
-export const del = client.delete.bind(client);
+export const head    = client.head.bind(client);
+export const get     = client.get.bind(client);
+export const post    = client.post.bind(client);
+export const patch   = client.patch.bind(client);
+export const put     = client.put.bind(client);
+export const del     = client.delete.bind(client);
 export const request = client.request.bind(client);
 ```
 

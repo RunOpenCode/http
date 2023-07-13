@@ -1,4 +1,5 @@
-export { HttpClient } from './http-client';
+export { HttpClient }       from './http-client';
+export { createHttpClient } from './create-http-client';
 
 export * from './adapter';
 export * from './assert';
