@@ -39,11 +39,11 @@ export function transformError(request: HttpRequestInterface, error: AngularHttp
                 return Promise.resolve(text);
             }
 
-            return new Promise<string | object>((resolve: (arg: object) => void, reject: (e: Error) => void) => {
+            return new Promise<string | object>((resolve: (arg: object) => void, reject: (e: unknown) => void): void => {
                 try {
                     let object: object = 'object' === typeof error.error ? error.error : JSON.parse(error.error);
                     resolve(object);
-                } catch (e) {
+                } catch (e: unknown) {
                     reject(e);
                 }
             });
