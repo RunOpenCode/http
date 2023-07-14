@@ -10,6 +10,7 @@ import {
  * @internal
  */
 export function isHttpInterceptorFunction<T = unknown>(interceptor: HttpInterceptor<T>): interceptor is HttpInterceptorFunction<T> {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return 'function' === typeof interceptor && undefined === (interceptor as any).intercept;
 }
 

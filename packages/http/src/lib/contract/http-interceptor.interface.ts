@@ -22,6 +22,7 @@ export interface HttpInterceptorInterface<T = unknown> {
 /**
  * Beside OO style, you may also use functional style of interceptors.
  */
+// eslint-disable-next-line max-len
 export type HttpInterceptorFunction<T = unknown> = (request: HttpRequestInterface, next: HttpHandlerInterface) => Observable<HttpResponseInterface<T>>;
 
 /**

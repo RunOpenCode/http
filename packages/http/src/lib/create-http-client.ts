@@ -20,8 +20,7 @@ export function createHttpClient(
     ],
 ): HttpClientInterface {
     if (adapter instanceof Array) {
-        interceptors = adapter;
-        adapter      = new FetchBrowserAdapter();
+        return new HttpClient(new FetchBrowserAdapter(), adapter);
     }
 
     return new HttpClient(adapter, interceptors);

@@ -18,7 +18,7 @@ export interface HttpClientInterface {
         headers?: HttpHeadersInterface | null | undefined,
         options?: HttpRequestOptionsInterface | null | undefined,
     ): Observable<HttpResponseInterface<T>>;
-    
+
     /**
      * Execute GET request on given URL.
      */
