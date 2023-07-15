@@ -1,28 +1,36 @@
 {
-    "extends": "nx/presets/npm.json",
-    "$schema": "./node_modules/nx/schemas/nx-schema.json",
-    "targetDefaults": {
-        "test": {
-            "inputs": [
-                "default",
-                "^default",
-                "{workspaceRoot}/jest.preset.js"
-            ]
-        }
-    },
-    "generators": {
-        "@nrwl/angular:application": {
-            "style": "css",
-            "linter": "eslint",
-            "unitTestRunner": "jest",
-            "e2eTestRunner": "none"
-        },
-        "@nrwl/angular:library": {
-            "linter": "eslint",
-            "unitTestRunner": "jest"
-        },
-        "@nrwl/angular:component": {
-            "style": "css"
-        }
+  "extends": "nx/presets/npm.json",
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "targetDefaults": {
+    "test": {
+      "inputs": [
+        "default",
+        "^default",
+        "{workspaceRoot}/jest.preset.js"
+      ]
     }
+  },
+  "generators": {
+    "@nrwl/angular:application": {
+      "style": "css",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "none"
+    },
+    "@nrwl/angular:library": {
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "css"
+    }
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "nx-cloud",
+      "options": {
+        "accessToken": "NDJiMWYxYTMtOTg2ZS00MDk3LWEzYTEtZWJiZjhhOGZjZmEwfHJlYWQtd3JpdGU="
+      }
+    }
+  }
 }

@@ -2,13 +2,6 @@
     "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
     "dest": "../../dist/packages/ngx-http-client",
     "lib": {
-        "entryFile": "src/index.ts",
-        "umdModuleIds": {
-            "@runopencode/http": "@runopencode/http",
-            "@angular/core": "@angular/core",
-            "@angular/common": "@angular/common",
-            "@angular/common/http": "@angular/common/http",
-            "rxjs": "rxjs"
-        }
+        "entryFile": "src/index.ts"
     }
 }

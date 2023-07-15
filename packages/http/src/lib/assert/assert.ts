@@ -17,10 +17,18 @@ export function assertResponseStatusCode(response: HttpResponseInterface<unknown
     throw new AssertionError(response, `Expected response status code ${code}, got: ${response.status}.`);
 }
 
-
-export function assertResponseSatisfies(response: HttpResponseInterface<unknown>, predicate: (response: HttpResponseInterface<unknown>) => boolean): void;
-export function assertResponseSatisfies(response: HttpResponseInterface<unknown>, predicate: (response: HttpResponseInterface<unknown>) => Promise<boolean>): Promise<void>;
-export function assertResponseSatisfies(response: HttpResponseInterface<unknown>, predicate: (response: HttpResponseInterface<unknown>) => Promise<boolean> | boolean): Promise<void> | void {
+export function assertResponseSatisfies(
+    response: HttpResponseInterface<unknown>,
+    predicate: (res: HttpResponseInterface<unknown>) => boolean,
+): void;
+export function assertResponseSatisfies(
+    response: HttpResponseInterface<unknown>,
+    predicate: (res: HttpResponseInterface<unknown>) => Promise<boolean>,
+): Promise<void>;
+export function assertResponseSatisfies(
+    response: HttpResponseInterface<unknown>,
+    predicate: (res: HttpResponseInterface<unknown>) => Promise<boolean> | boolean,
+): Promise<void> | void {
     let result: Promise<boolean> | boolean = predicate(response);
 
     if (typeof result === 'boolean') {
@@ -31,9 +39,11 @@ export function assertResponseSatisfies(response: HttpResponseInterface<unknown>
         throw new AssertionError(response, 'Expected response to satisfy predicate.');
     }
 
-    return result.then((result: boolean): Promise<void> => new Promise<void>((resolve, reject): void => {
-        if (result) {
-            return resolve();
+    // eslint-disable-next-line consistent-return
+    return result.then((res: boolean): Promise<void> => new Promise<void>((resolve: () => void, reject: (err: unknown) => void): void => {
+        if (res) {
+            resolve();
+            return;
         }
 
         reject(new AssertionError(response, 'Expected response to satisfy predicate.'));

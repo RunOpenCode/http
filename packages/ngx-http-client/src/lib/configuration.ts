@@ -2,20 +2,20 @@ import { HttpClient as AngularHttpClient } from '@angular/common/http';
 import {
     InjectionToken,
     Provider,
-    Type
-} from '@angular/core';
+    Type,
+}                                          from '@angular/core';
 import {
     ContentTypeInterceptor,
     FetchBrowserAdapter,
     HttpAdapterInterface,
     HttpInterceptorFunction,
     HttpInterceptorInterface,
-} from '@runopencode/http';
-import { AngularHttpAdapter } from './adapter';
+}                                          from '@runopencode/http';
+import { AngularHttpAdapter }              from './adapter';
 import {
     NGX_HTTP_CLIENT_ADAPTER,
-    NGX_HTTP_CLIENT_INTERCEPTOR
-} from './contract';
+    NGX_HTTP_CLIENT_INTERCEPTOR,
+}                                          from './contract';
 
 export interface Configuration {
 
@@ -37,8 +37,8 @@ export interface Configuration {
 
 export function sanitize(configuration?: Partial<Configuration>): Configuration {
     return {
-        adapter: configuration?.adapter ?? 'fetch',
-        interceptors: configuration?.interceptors ?? [],
+        adapter:          configuration?.adapter ?? 'fetch',
+        interceptors:     configuration?.interceptors ?? [],
         guessContentType: configuration?.guessContentType ?? true,
     };
 }
@@ -46,8 +46,8 @@ export function sanitize(configuration?: Partial<Configuration>): Configuration 
 export function provideAdapter(adapter: 'angular' | 'fetch' | Type<unknown> | InjectionToken<HttpAdapterInterface>): Provider {
     if ('angular' === adapter) {
         return {
-            provide: NGX_HTTP_CLIENT_ADAPTER,
-            deps: [AngularHttpClient],
+            provide:    NGX_HTTP_CLIENT_ADAPTER,
+            deps:       [AngularHttpClient],
             useFactory: function provideAngularHttpAdapter(client: AngularHttpClient): HttpAdapterInterface {
                 return new AngularHttpAdapter(client);
             },
@@ -56,7 +56,7 @@ export function provideAdapter(adapter: 'angular' | 'fetch' | Type<unknown> | In
 
     if ('fetch' === adapter) {
         return {
-            provide: NGX_HTTP_CLIENT_ADAPTER,
+            provide:    NGX_HTTP_CLIENT_ADAPTER,
             useFactory: function provideFetchHttpAdapter(): HttpAdapterInterface {
                 return new FetchBrowserAdapter();
             },
@@ -64,22 +64,23 @@ export function provideAdapter(adapter: 'angular' | 'fetch' | Type<unknown> | In
     }
 
     return {
-        provide: NGX_HTTP_CLIENT_ADAPTER,
+        provide:     NGX_HTTP_CLIENT_ADAPTER,
         useExisting: adapter,
     };
 }
 
+// eslint-disable-next-line max-len
 export function provideInterceptors(interceptors: Array<Type<HttpInterceptorInterface> | HttpInterceptorFunction>, includeContentTypeInterceptor: boolean): Provider[] {
     let resolved: Provider[] = [];
 
     if (includeContentTypeInterceptor) {
         resolved.push({
-            provide: NGX_HTTP_CLIENT_INTERCEPTOR,
+            provide:  NGX_HTTP_CLIENT_INTERCEPTOR,
             useClass: ContentTypeInterceptor,
-            multi: true,
+            multi:    true,
         });
     }
-    
+
     return resolved.concat(interceptors.map((interceptor: Type<HttpInterceptorInterface> | HttpInterceptorFunction): Provider => {
         // If interceptor is a class, check if it implements the interface.
         if ('function' === typeof interceptor.prototype.intercept) {
@@ -89,12 +90,12 @@ export function provideInterceptors(interceptors: Array<Type<HttpInterceptorInte
                 multi:    true,
             };
         }
-        
+
         // It is a function, so we can just pass it as value.
         return {
-            provide: NGX_HTTP_CLIENT_INTERCEPTOR,
+            provide:  NGX_HTTP_CLIENT_INTERCEPTOR,
             useValue: interceptor,
-            multi: true,
+            multi:    true,
         };
     }));
 }
