@@ -1,7 +1,7 @@
 import { HttpRequestInterface } from '../../../contract';
 import { transformRequestBody } from './transform-request-body';
 
-describe('transformRequestBody', (): void => {
+describe('transformRequestBody()', (): void => {
 
     it('converts body to JSON string if "Content-Type" is "application/json" and value type is "object".', (): void => {
         expect(transformRequestBody({

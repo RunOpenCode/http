@@ -1,7 +1,6 @@
 import { createContentResolver } from './create-content-resolver';
-import { transformRequestBody }  from './transform-request-body';
 
-describe('transformRequestBody', (): void => {
+describe('createContentResolver()', (): void => {
 
     it('resolves to null when status code is 204.', (): void => {
         expect(createContentResolver<null>({
@@ -29,5 +28,5 @@ describe('transformRequestBody', (): void => {
             createContentResolver<null>({} as Response, 'foo' as any);
         }).toThrowError('Unsupported type "foo" provided.');
     });
-    
+
 });
