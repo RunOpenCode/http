@@ -1,7 +1,7 @@
 import { HttpRequestInterface } from '../../../contract';
 import { transformRequestBody } from './transform-request-body';
 
-describe('transformRequestBody', (): void => {
+describe('transformRequestBody()', (): void => {
 
     it('converts body to JSON string if "Content-Type" is "application/json" and value type is "object".', (): void => {
         expect(transformRequestBody({
@@ -34,4 +34,21 @@ describe('transformRequestBody', (): void => {
         } as any as HttpRequestInterface)).toBe('{"foo":"bar"}');
     });
 
+    it('returns body as is if body is null.', (): void => {
+        expect(transformRequestBody({
+            headers: {
+                get: (): string => 'multipart/form-data',
+            },
+            body:    null,
+        } as any as HttpRequestInterface)).toBeNull();
+    });
+
+    it('returns body as is if body is undefined.', (): void => {
+        expect(transformRequestBody({
+            headers: {
+                get: (): string => 'multipart/form-data',
+            },
+            body:    null,
+        } as any as HttpRequestInterface)).toBeUndefined();
+    });
 });

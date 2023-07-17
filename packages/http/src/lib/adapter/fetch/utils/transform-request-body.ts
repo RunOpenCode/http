@@ -9,10 +9,9 @@ import { HttpRequestInterface } from '../../../contract';
 export function transformRequestBody(request: HttpRequestInterface): BodyInit {
     let body: unknown = request.body;
 
-    if ('application/json' === request.headers.get('Content-Type') && typeof body === 'object') {
+    if ('application/json' === request.headers.get('Content-Type') && typeof body === 'object' && null !== body && undefined !== body) {
         return JSON.stringify(body);
     }
 
     return body as BodyInit;
 }
-

@@ -40,7 +40,7 @@ export class HttpClient implements HttpClientInterface {
      */
     public head<T>(
         url: string,
-        data: unknown,
+        data: unknown | null | undefined,
         headers?: HttpHeadersInterface | null | undefined,
         options?: HttpRequestOptionsInterface | null | undefined,
     ): Observable<HttpResponseInterface<T>> {
@@ -65,7 +65,7 @@ export class HttpClient implements HttpClientInterface {
      */
     public post<T>(
         url: string,
-        data: unknown,
+        data: unknown | null | undefined,
         headers?: HttpHeadersInterface | null | undefined,
         options?: HttpRequestOptionsInterface | null | undefined,
     ): Observable<HttpResponseInterface<T>> {
@@ -78,7 +78,7 @@ export class HttpClient implements HttpClientInterface {
      */
     public patch<T>(
         url: string,
-        data: unknown,
+        data: unknown | null | undefined,
         headers?: HttpHeadersInterface | null | undefined,
         options?: HttpRequestOptionsInterface | null | undefined,
     ): Observable<HttpResponseInterface<T>> {
@@ -91,7 +91,7 @@ export class HttpClient implements HttpClientInterface {
      */
     public put<T>(
         url: string,
-        data: unknown,
+        data: unknown | null | undefined,
         headers?: HttpHeadersInterface | null | undefined,
         options?: HttpRequestOptionsInterface | null | undefined,
     ): Observable<HttpResponseInterface<T>> {
