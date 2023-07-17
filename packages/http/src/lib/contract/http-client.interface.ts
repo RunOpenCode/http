@@ -14,7 +14,7 @@ export interface HttpClientInterface {
      */
     head<T>(
         url: string,
-        data: unknown,
+        data?: unknown | undefined | null,
         headers?: HttpHeadersInterface | null | undefined,
         options?: HttpRequestOptionsInterface | null | undefined,
     ): Observable<HttpResponseInterface<T>>;
@@ -43,7 +43,7 @@ export interface HttpClientInterface {
      */
     patch<T>(
         url: string,
-        data: unknown,
+        data: unknown | null | undefined,
         headers?: HttpHeadersInterface | null | undefined,
         options?: HttpRequestOptionsInterface | null | undefined,
     ): Observable<HttpResponseInterface<T>>;
@@ -53,7 +53,7 @@ export interface HttpClientInterface {
      */
     put<T>(
         url: string,
-        data: unknown,
+        data?: unknown | null | undefined,
         headers?: HttpHeadersInterface | null | undefined,
         options?: HttpRequestOptionsInterface | null | undefined,
     ): Observable<HttpResponseInterface<T>>;

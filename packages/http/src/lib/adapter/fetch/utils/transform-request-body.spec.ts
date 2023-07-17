@@ -34,4 +34,21 @@ describe('transformRequestBody', (): void => {
         } as any as HttpRequestInterface)).toBe('{"foo":"bar"}');
     });
 
+    it('returns body as is if body is null.', (): void => {
+        expect(transformRequestBody({
+            headers: {
+                get: (): string => 'multipart/form-data',
+            },
+            body:    null,
+        } as any as HttpRequestInterface)).toBeNull();
+    });
+
+    it('returns body as is if body is undefined.', (): void => {
+        expect(transformRequestBody({
+            headers: {
+                get: (): string => 'multipart/form-data',
+            },
+            body:    null,
+        } as any as HttpRequestInterface)).toBeUndefined();
+    });
 });
