@@ -48,7 +48,6 @@ describe('transformRequestBody()', (): void => {
             headers: {
                 get: (): string => 'multipart/form-data',
             },
-            body:    null,
         } as any as HttpRequestInterface)).toBeUndefined();
     });
 });
