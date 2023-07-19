@@ -25,6 +25,7 @@ describe('createContentResolver()', (): void => {
 
     it('throws exception when type is not supported.', (): void => {
         expect((): void => {
+            /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
             createContentResolver<null>({} as Response, 'foo' as any);
         }).toThrowError('Unsupported type "foo" provided.');
     });
