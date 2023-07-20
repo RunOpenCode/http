@@ -6,6 +6,9 @@ import {
     HttpResponseInterface,
 }                     from '../contract';
 
+/**
+ * Http handler wraps the interceptor and creates handler/interceptor chain.
+ */
 export class HttpHandler implements HttpHandlerInterface {
 
     private readonly _interceptor: HttpInterceptorInterface;
