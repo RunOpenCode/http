@@ -43,7 +43,7 @@ export class ContentTypeInterceptor implements HttpInterceptorInterface {
 
         if ('string' === typeof request.body) {
             return next.handle(request.clone({
-                headers: request.headers.append('Content-Type', 'plain/text'),
+                headers: request.headers.append('Content-Type', 'text/plain'),
             }));
         }
 
