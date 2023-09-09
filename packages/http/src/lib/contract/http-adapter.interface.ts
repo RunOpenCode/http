@@ -12,6 +12,6 @@ export interface HttpAdapterInterface {
      */
     execute<T>(
         request: HttpRequestInterface,
-        options: HttpRequestOptionsInterface,
+        options?: HttpRequestOptionsInterface,
     ): Observable<HttpResponseInterface<T>>;
 }
