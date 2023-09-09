@@ -79,9 +79,9 @@ import {
     Injectable,
 } from '@angular/core';
 
-import {NGX_HTTP_CLIENT} from '@runopencode/ngx-http-client';
-import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
+import { NGX_HTTP_CLIENT } from '@runopencode/ngx-http-client';
+import { Observable }      from 'rxjs';
+import { map }             from 'rxjs/operators';
 
 @Injectable()
 export class PostRepository {

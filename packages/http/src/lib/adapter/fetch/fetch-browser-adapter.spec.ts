@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import fetchMock, { FetchMock } from 'jest-fetch-mock';
 import { Observable }           from 'rxjs';
 import {

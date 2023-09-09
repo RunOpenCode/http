@@ -4,6 +4,7 @@ import {
     TeardownLogic,
 }                       from 'rxjs';
 import {
+    createDefaultHttpRequestOptions,
     HttpAdapterInterface,
     HttpRequestInterface,
     HttpRequestOptionsInterface,
@@ -36,6 +37,9 @@ export class FetchBrowserAdapter implements HttpAdapterInterface {
         request: HttpRequestInterface,
         options: HttpRequestOptionsInterface = {},
     ): Observable<HttpResponseInterface<T>> {
+        // eslint-disable-next-line no-param-reassign
+        options = createDefaultHttpRequestOptions(options);
+
         return new Observable<HttpResponseInterface<T>>((observer: Subscriber<HttpResponseInterface<T>>): TeardownLogic => {
             let abortController: AbortController | null = new AbortController();
             let promise: Promise<Response>              = this._fetchFn(request.url, {

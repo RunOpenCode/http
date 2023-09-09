@@ -20,3 +20,12 @@ export interface HttpRequestOptionsInterface {
      */
     withCredentials?: boolean;
 }
+
+export function createDefaultHttpRequestOptions(options: HttpRequestOptionsInterface = {}): HttpRequestOptionsInterface {
+    return {
+        responseType:    'json',
+        errorType:       'json',
+        withCredentials: false,
+        ...(options || {}),
+    };
+}

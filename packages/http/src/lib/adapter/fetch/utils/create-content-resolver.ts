@@ -4,7 +4,7 @@
  *
  * @internal
  */
-export function createContentResolver<T = unknown>(response: Response, type?: 'arraybuffer' | 'blob' | 'json' | 'text'): () => Promise<T> {
+export function createContentResolver<T = unknown>(response: Response, type: 'arraybuffer' | 'blob' | 'json' | 'text'): () => Promise<T> {
     if (204 === response.status) {
         return (): Promise<null> => Promise.resolve(null);
     }
@@ -22,14 +22,6 @@ export function createContentResolver<T = unknown>(response: Response, type?: 'a
     }
 
     if ('text' === type) {
-        return response.text.bind(response);
-    }
-
-    if (undefined === type && 'application/json' === response.headers.get('Content-Type')) {
-        return response.json.bind(response);
-    }
-
-    if (undefined === type && ['text/plain', 'text/html', 'text/xml'].includes(response.headers.get('Content-Type'))) {
         return response.text.bind(response);
     }
 
