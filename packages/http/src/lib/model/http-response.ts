@@ -1,7 +1,8 @@
 import {
     HttpHeadersInterface,
     HttpResponseInterface,
-} from '../contract';
+}                         from '../contract';
+import { HttpStatusCode } from '../enum';
 
 /**
  * HTTP Response is value object containing data received from
@@ -17,7 +18,7 @@ export class HttpResponse<T> implements HttpResponseInterface<T> {
     /**
      * {@inheritdoc}
      */
-    public readonly status: number;
+    public readonly status: HttpStatusCode;
 
     /**
      * {@inheritdoc}
@@ -35,7 +36,7 @@ export class HttpResponse<T> implements HttpResponseInterface<T> {
 
     public constructor(
         url: string,
-        status: number,
+        status: HttpStatusCode,
         headers: HttpHeadersInterface,
         content: (() => Promise<T>) | Promise<T>,
     ) {

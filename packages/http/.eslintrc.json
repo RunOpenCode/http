@@ -13,7 +13,7 @@
                 ]
             },
             "files": [
-                "src/**/*.ts"
+                "packages/http/src/**/*.ts"
             ]
         }
     ]

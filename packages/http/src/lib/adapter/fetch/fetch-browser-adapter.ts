@@ -4,16 +4,17 @@ import {
     TeardownLogic,
 }                       from 'rxjs';
 import {
-    ClientError,
-    HttpError,
-}                       from '../../error';
-import { HttpResponse } from '../../model';
-import {
+    createDefaultHttpRequestOptions,
     HttpAdapterInterface,
     HttpRequestInterface,
     HttpRequestOptionsInterface,
     HttpResponseInterface,
 }                       from '../../contract';
+import {
+    ClientError,
+    HttpError,
+}                       from '../../error';
+import { HttpResponse } from '../../model';
 import {
     createContentResolver,
     transformRequestBody,
@@ -23,16 +24,25 @@ import {
 
 export class FetchBrowserAdapter implements HttpAdapterInterface {
 
+    private readonly _fetchFn: typeof fetch;
+
+    public constructor(fetchFn: typeof fetch = null) {
+        this._fetchFn = fetchFn;
+    }
+
     /**
      * {@inheritdoc}
      */
     public execute<T>(
         request: HttpRequestInterface,
-        options: HttpRequestOptionsInterface,
+        options: HttpRequestOptionsInterface = {},
     ): Observable<HttpResponseInterface<T>> {
+        // eslint-disable-next-line no-param-reassign
+        options = createDefaultHttpRequestOptions(options);
+
         return new Observable<HttpResponseInterface<T>>((observer: Subscriber<HttpResponseInterface<T>>): TeardownLogic => {
             let abortController: AbortController | null = new AbortController();
-            let promise: Promise<Response>              = fetch(request.url, {
+            let promise: Promise<Response>              = this._fetchFn(request.url, {
                 signal:      abortController.signal,
                 method:      request.method,
                 headers:     transformRequestHeaders(request),
@@ -72,6 +82,7 @@ export class FetchBrowserAdapter implements HttpAdapterInterface {
                     if (!observer.closed) {
                         observer.complete();
                     }
+
                     return;
                 }
 

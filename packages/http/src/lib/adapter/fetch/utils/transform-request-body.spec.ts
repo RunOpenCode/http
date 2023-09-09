@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { HttpRequestInterface } from '../../../contract';
 import { transformRequestBody } from './transform-request-body';
 
@@ -8,7 +9,8 @@ describe('transformRequestBody()', (): void => {
             headers: {
                 get: (): string => 'application/json',
             },
-            body:    {
+
+            body: {
                 foo: 'bar',
             },
         } as any as HttpRequestInterface)).toBe('{"foo":"bar"}');
@@ -18,10 +20,11 @@ describe('transformRequestBody()', (): void => {
         let body: FormData = new FormData();
 
         expect(transformRequestBody({
+            body: body,
+
             headers: {
                 get: (): string => 'multipart/form-data',
             },
-            body:    body,
         } as any as HttpRequestInterface)).toBe(body);
     });
 
@@ -30,7 +33,8 @@ describe('transformRequestBody()', (): void => {
             headers: {
                 get: (): string => 'multipart/form-data',
             },
-            body:    '{"foo":"bar"}',
+
+            body: '{"foo":"bar"}',
         } as any as HttpRequestInterface)).toBe('{"foo":"bar"}');
     });
 
@@ -39,7 +43,8 @@ describe('transformRequestBody()', (): void => {
             headers: {
                 get: (): string => 'multipart/form-data',
             },
-            body:    null,
+
+            body: null,
         } as any as HttpRequestInterface)).toBeNull();
     });
 
@@ -48,7 +53,6 @@ describe('transformRequestBody()', (): void => {
             headers: {
                 get: (): string => 'multipart/form-data',
             },
-            body:    null,
         } as any as HttpRequestInterface)).toBeUndefined();
     });
 });

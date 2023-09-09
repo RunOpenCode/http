@@ -1,4 +1,17 @@
 import {
+    HttpClient as AngularHttpClient,
+    HttpErrorResponse as AngularHttpErrorResponse,
+    HttpHeaders as AngularHttpHeaders,
+    HttpParams as AngularHttpParams,
+    HttpResponse as AngularHttpResponse,
+} from '@angular/common/http';
+import {
+    HttpAdapterInterface,
+    HttpRequestInterface,
+    HttpRequestOptionsInterface,
+    HttpResponseInterface,
+} from '@runopencode/http';
+import {
     Observable,
     throwError,
 } from 'rxjs';
@@ -6,19 +19,6 @@ import {
     catchError,
     map,
 } from 'rxjs/operators';
-import {
-    HttpAdapterInterface,
-    HttpRequestInterface,
-    HttpResponseInterface,
-    HttpRequestOptionsInterface,
-} from '@runopencode/http';
-import {
-    HttpClient as AngularHttpClient,
-    HttpErrorResponse as AngularHttpErrorResponse,
-    HttpResponse as AngularHttpResponse,
-    HttpHeaders as AngularHttpHeaders,
-    HttpParams as AngularHttpParams,
-} from '@angular/common/http';
 import {
     transformError,
     transformRequestHeaders,
@@ -47,7 +47,7 @@ export class AngularHttpAdapter implements HttpAdapterInterface {
         this._http = http;
     }
 
-    public execute<T>(request: HttpRequestInterface, options: HttpRequestOptionsInterface): Observable<HttpResponseInterface<T>> {
+    public execute<T>(request: HttpRequestInterface, options: HttpRequestOptionsInterface = {}): Observable<HttpResponseInterface<T>> {
         let requestOptions: AngularRequestOptions = {
             observe:         'response',
             responseType:    options.responseType as 'arraybuffer' | 'text' | 'blob' | 'json',

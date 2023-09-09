@@ -81,4 +81,6 @@ coupled with Angular framework. However, with this library, it was possible to a
 
 - [ ] Write an adapter for: https://github.com/silkimen/cordova-plugin-advanced-http.
 - [ ] Add support for tracking download response (stream response).
-- [ ] Write unit tests.
+- [ ] Add more unit tests.
+- [ ] Simplify http client method invocations when setting headers, instead of requesting for HttpHeadersInterface, use
+  plain object and convert it to HttpHeadersInterface internally.
