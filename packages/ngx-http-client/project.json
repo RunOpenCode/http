@@ -1,59 +1,58 @@
 {
-    "name": "ngx-http-client",
-    "$schema": "../../node_modules/nx/schemas/project-schema.json",
-    "root": "packages/ngx-http-client",
-    "sourceRoot": "packages/ngx-http-client/src",
-    "prefix": "@runopencode",
-    "tags": [],
-    "projectType": "library",
-    "targets": {
-        "build": {
-            "executor": "@nx/angular:package",
-            "outputs": [
-                "{workspaceRoot}/dist/{projectRoot}"
-            ],
-            "options": {
-                "project": "packages/ngx-http-client/ng-package.json"
-            },
-            "configurations": {
-                "production": {
-                    "tsConfig": "packages/ngx-http-client/tsconfig.lib.prod.json"
-                },
-                "development": {
-                    "tsConfig": "packages/ngx-http-client/tsconfig.lib.json"
-                }
-            },
-            "defaultConfiguration": "production",
-            "updateBuildableProjectDepsInPackageJson": true,
-            "buildableProjectDepsInPackageJsonType": "dependencies"
+  "name": "ngx-http-client",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/ngx-http-client/src",
+  "prefix": "@runopencode",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:package",
+      "outputs": [
+        "{workspaceRoot}/dist/{projectRoot}"
+      ],
+      "options": {
+        "project": "packages/ngx-http-client/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "packages/ngx-http-client/tsconfig.lib.prod.json"
         },
-        "test": {
-            "executor": "@nrwl/jest:jest",
-            "outputs": [
-                "{workspaceRoot}/coverage/{projectRoot}"
-            ],
-            "options": {
-                "jestConfig": "packages/ngx-http-client/jest.config.ts",
-                "passWithNoTests": true
-            },
-            "configurations": {
-                "ci": {
-                    "ci": true,
-                    "codeCoverage": true
-                }
-            }
-        },
-        "lint": {
-            "executor": "@nrwl/linter:eslint",
-            "outputs": [
-                "{options.outputFile}"
-            ],
-            "options": {
-                "lintFilePatterns": [
-                    "packages/ngx-http-client/**/*.ts",
-                    "packages/ngx-http-client/**/*.html"
-                ]
-            }
+        "development": {
+          "tsConfig": "packages/ngx-http-client/tsconfig.lib.json"
         }
+      },
+      "defaultConfiguration": "production",
+      "updateBuildableProjectDepsInPackageJson": true,
+      "buildableProjectDepsInPackageJsonType": "dependencies"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
+      "options": {
+        "jestConfig": "packages/ngx-http-client/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "packages/ngx-http-client/**/*.ts",
+          "packages/ngx-http-client/**/*.html"
+        ]
+      }
     }
+  }
 }

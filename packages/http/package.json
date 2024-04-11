@@ -1,16 +1,16 @@
 {
-    "name": "@runopencode/http",
-    "version": "16.0.0",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/RunOpenCode/http"
-    },
-    "main": "src/index.js",
-    "types": "src/index.d.ts",
-    "license": "MIT",
-    "private": false,
-    "peerDependencies": {
-        "rxjs": ">=6.0",
-        "tslib": ">=2.0"
-    }
+  "name": "@runopencode/http",
+  "version": "17.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RunOpenCode/http"
+  },
+  "main": "src/index.js",
+  "types": "src/index.d.ts",
+  "license": "MIT",
+  "private": false,
+  "peerDependencies": {
+    "rxjs": ">=6.0",
+    "tslib": ">=2.0"
+  }
 }

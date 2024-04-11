@@ -25,12 +25,6 @@
       "style": "css"
     }
   },
-  "tasksRunnerOptions": {
-    "default": {
-      "runner": "nx-cloud",
-      "options": {
-        "accessToken": "NDJiMWYxYTMtOTg2ZS00MDk3LWEzYTEtZWJiZjhhOGZjZmEwfHJlYWQtd3JpdGU="
-      }
-    }
-  }
+  "nxCloudAccessToken": "NDJiMWYxYTMtOTg2ZS00MDk3LWEzYTEtZWJiZjhhOGZjZmEwfHJlYWQtd3JpdGU=",
+  "useInferencePlugins": false
 }
