@@ -19,3 +19,5 @@ testem.log
 /typings
 
 .angular
+
+.nx/cache
