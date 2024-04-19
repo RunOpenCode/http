@@ -1,6 +1,6 @@
 {
     "name": "@runopencode/ngx-http-client",
-    "version": "17.0.4",
+    "version": "17.0.5",
     "repository": {
         "type": "git",
         "url": "https://github.com/RunOpenCode/http"
@@ -9,9 +9,9 @@
         "tslib": "^2.3.0"
     },
     "peerDependencies": {
-        "@runopencode/http": "^17",
-        "@angular/common": "^17",
-        "@angular/core": "^17",
+        "@runopencode/http": "^17.0",
+        "@angular/common": "^17.0",
+        "@angular/core": "^17.0",
         "rxjs": ">=6.0"
     },
     "license": "MIT",
