@@ -2,14 +2,14 @@ import {
     Observable,
     Subscriber,
     TeardownLogic,
-}                       from 'rxjs';
+}                from 'rxjs';
 import {
     createDefaultHttpRequestOptions,
     HttpAdapterInterface,
     HttpRequestInterface,
     HttpRequestOptionsInterface,
     HttpResponseInterface,
-}                       from '../../contract';
+}                from '../../contract';
 import {
     ClientError,
     HttpError,
@@ -27,7 +27,9 @@ export class FetchBrowserAdapter implements HttpAdapterInterface {
     private readonly _fetchFn: typeof fetch;
 
     public constructor(fetchFn: typeof fetch = null) {
-        this._fetchFn = fetchFn || fetch;
+        this._fetchFn = fetchFn || function fetchProxy(input: RequestInfo | URL, init?: RequestInit): Promise<Response> {
+            return fetch(input, init);
+        };
     }
 
     /**
