@@ -27,7 +27,9 @@ export class FetchBrowserAdapter implements HttpAdapterInterface {
     private readonly _fetchFn: typeof fetch;
 
     public constructor(fetchFn: typeof fetch = null) {
-        this._fetchFn = fetchFn;
+        this._fetchFn = fetchFn || function fetchProxy(input: RequestInfo, init?: RequestInit): Promise<Response> {
+            return fetch(input, init);
+        };
     }
 
     /**
