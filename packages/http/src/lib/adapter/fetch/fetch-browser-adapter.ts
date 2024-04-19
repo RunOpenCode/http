@@ -27,7 +27,7 @@ export class FetchBrowserAdapter implements HttpAdapterInterface {
     private readonly _fetchFn: typeof fetch;
 
     public constructor(fetchFn: typeof fetch = null) {
-        this._fetchFn = fetchFn;
+        this._fetchFn = fetchFn || fetch;
     }
 
     /**
