@@ -15,7 +15,7 @@ export class HttpHeaders implements HttpHeadersInterface {
             return;
         }
 
-        if ('function' === typeof headers.forEach) {
+        if (headers instanceof Map) {
             headers.forEach((values: string[] | string, name: string): void => {
                 this._headers.set(name, Array.isArray(values) ? values : [values]);
                 this._normalizedNames.set(name.toLowerCase(), name);
@@ -57,7 +57,7 @@ export class HttpHeaders implements HttpHeadersInterface {
      * {@inheritdoc}
      */
     public get(name: string): string | null {
-        let values: string[] = this.getAll(name);
+        let values: string[] | null = this.getAll(name);
 
         if (values === null) {
             return null;
@@ -70,7 +70,7 @@ export class HttpHeaders implements HttpHeadersInterface {
      * {@inheritdoc}
      */
     public getAll(name: string): string[] | null {
-        return this.has(name) ? this._headers.get(this._normalizedNames.get(name.toLowerCase())) : null;
+        return this.has(name) ? this._headers.get(this._normalizedNames.get(name.toLowerCase())!) || null : null;
     }
 
     /**
@@ -81,10 +81,10 @@ export class HttpHeaders implements HttpHeadersInterface {
         let resolvedName: string           = name;
 
         if (this._normalizedNames.has(name.toLowerCase())) {
-            resolvedName = this._normalizedNames.get(name.toLowerCase());
+            resolvedName = this._normalizedNames.get(name.toLowerCase())!;
         }
 
-        let resolvedValues: string[] = headers.has(resolvedName) ? headers.get(resolvedName) : [];
+        let resolvedValues: string[] = headers.has(resolvedName) ? headers.get(resolvedName) || [] : [];
         let valuesToAppend: string[] = Array.isArray(value) ? value : [value];
 
         valuesToAppend.forEach((valueToAppend: string): void => {
@@ -104,7 +104,7 @@ export class HttpHeaders implements HttpHeadersInterface {
         let resolvedName: string           = name;
 
         if (this._normalizedNames.has(name.toLowerCase())) {
-            resolvedName = this._normalizedNames.get(name.toLowerCase());
+            resolvedName = this._normalizedNames.get(name.toLowerCase())!;
         }
 
         headers.set(resolvedName, Array.isArray(value) ? value : [value]);
@@ -120,7 +120,7 @@ export class HttpHeaders implements HttpHeadersInterface {
         let resolvedName: string           = name;
 
         if (this._normalizedNames.has(name.toLowerCase())) {
-            resolvedName = this._normalizedNames.get(name.toLowerCase());
+            resolvedName = this._normalizedNames.get(name.toLowerCase())!;
         }
 
         if (!headers.has(resolvedName)) {
@@ -133,7 +133,7 @@ export class HttpHeaders implements HttpHeadersInterface {
         }
 
         let valuesToRemove: string[] = Array.isArray(value) ? value : [value];
-        let values: string[]         = headers.get(resolvedName);
+        let values: string[]         = headers.get(resolvedName)!;
 
         values = values.filter((currentValue: string): boolean => -1 === valuesToRemove.indexOf(currentValue));
 

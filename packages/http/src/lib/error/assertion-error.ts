@@ -7,7 +7,7 @@ export class AssertionError extends Error {
 
     public readonly response: HttpResponseInterface<unknown>;
 
-    public constructor(response: HttpResponseInterface<unknown>, message: string = null) {
+    public constructor(response: HttpResponseInterface<unknown>, message: string | null = null) {
         super(message || 'Assertion of response failed.');
         this.response = response;
         Object.setPrototypeOf(this, Error.prototype);

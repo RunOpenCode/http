@@ -20,4 +20,4 @@ testem.log
 
 .angular
 
-.nx/cache
+.nx
