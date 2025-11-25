@@ -33,8 +33,8 @@ describe('ContentTypeInterceptor', (): void => {
         }), null);
 
         expect(interceptor.intercept(request, handler)).toBe(observable);
-        expect(handler.handle).toBeCalledTimes(1);
-        expect(handler.handle).toBeCalledWith(request);
+        expect(handler.handle).toHaveBeenCalledTimes(1);
+        expect(handler.handle).toHaveBeenCalledWith(request);
     });
 
     it('skips interception when body is "undefined".', (): void => {
@@ -43,8 +43,8 @@ describe('ContentTypeInterceptor', (): void => {
         }), undefined);
 
         expect(interceptor.intercept(request, handler)).toBe(observable);
-        expect(handler.handle).toBeCalledTimes(1);
-        expect(handler.handle).toBeCalledWith(request);
+        expect(handler.handle).toHaveBeenCalledTimes(1);
+        expect(handler.handle).toHaveBeenCalledWith(request);
     });
 
     it('skips interception when "Content-Type" header is present.', (): void => {
@@ -55,16 +55,16 @@ describe('ContentTypeInterceptor', (): void => {
         });
 
         expect(interceptor.intercept(request, handler)).toBe(observable);
-        expect(handler.handle).toBeCalledTimes(1);
-        expect(handler.handle).toBeCalledWith(request);
+        expect(handler.handle).toHaveBeenCalledTimes(1);
+        expect(handler.handle).toHaveBeenCalledWith(request);
     });
 
     it('sets "Content-Type" to "multipart/form-data" when body is instance of "FormData".', (): void => {
         let request: HttpRequestInterface = new HttpRequest('https://foo.bar', RequestMethod.GET, null, new FormData());
 
         expect(interceptor.intercept(request, handler)).toBe(observable);
-        expect(handler.handle).toBeCalledTimes(1);
-        expect(handler.handle).not.toBeCalledWith(request);
+        expect(handler.handle).toHaveBeenCalledTimes(1);
+        expect(handler.handle).not.toHaveBeenCalledWith(request);
 
         expect(getHandlerInvocationArg().headers.get('content-type')).toBe('multipart/form-data');
     });
@@ -75,8 +75,8 @@ describe('ContentTypeInterceptor', (): void => {
         });
 
         expect(interceptor.intercept(request, handler)).toBe(observable);
-        expect(handler.handle).toBeCalledTimes(1);
-        expect(handler.handle).not.toBeCalledWith(request);
+        expect(handler.handle).toHaveBeenCalledTimes(1);
+        expect(handler.handle).not.toHaveBeenCalledWith(request);
 
         expect(getHandlerInvocationArg().headers.get('content-type')).toBe('application/json');
     });
@@ -85,8 +85,8 @@ describe('ContentTypeInterceptor', (): void => {
         let request: HttpRequestInterface = new HttpRequest('https://foo.bar', RequestMethod.GET, null, 'foo bar');
 
         expect(interceptor.intercept(request, handler)).toBe(observable);
-        expect(handler.handle).toBeCalledTimes(1);
-        expect(handler.handle).not.toBeCalledWith(request);
+        expect(handler.handle).toHaveBeenCalledTimes(1);
+        expect(handler.handle).not.toHaveBeenCalledWith(request);
 
         expect(getHandlerInvocationArg().headers.get('content-type')).toBe('text/plain');
     });
@@ -100,8 +100,8 @@ describe('ContentTypeInterceptor', (): void => {
         let request: HttpRequestInterface = new HttpRequest('https://foo.bar', RequestMethod.GET, null, body);
 
         expect(interceptor.intercept(request, handler)).toBe(observable);
-        expect(handler.handle).toBeCalledTimes(1);
-        expect(handler.handle).toBeCalledWith(request);
+        expect(handler.handle).toHaveBeenCalledTimes(1);
+        expect(handler.handle).toHaveBeenCalledWith(request);
     });
 
 });

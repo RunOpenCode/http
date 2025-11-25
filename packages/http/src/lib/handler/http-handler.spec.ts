@@ -22,8 +22,8 @@ describe('HttpHandler', (): void => {
 
         handler.handle(request);
 
-        expect(interceptor.intercept).toBeCalledTimes(1);
-        expect(interceptor.intercept).toBeCalledWith(request, next);
+        expect(interceptor.intercept).toHaveBeenCalledTimes(1);
+        expect(interceptor.intercept).toHaveBeenCalledWith(request, next);
     });
 
 });

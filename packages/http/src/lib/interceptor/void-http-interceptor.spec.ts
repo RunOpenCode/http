@@ -21,7 +21,7 @@ describe('VoidHttpInterceptor', (): void => {
         };
 
         expect(interceptor.intercept(request, next)).toBe(observable);
-        expect(next.handle).toBeCalledTimes(1);
+        expect(next.handle).toHaveBeenCalledTimes(1);
     });
 
 });
