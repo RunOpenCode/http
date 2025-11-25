@@ -1,6 +1,6 @@
 {
     "name": "@runopencode/http",
-    "version": "17.0.6",
+    "version": "20.0.0",
     "repository": {
         "type": "git",
         "url": "https://github.com/RunOpenCode/http"
@@ -10,7 +10,7 @@
     "license": "MIT",
     "private": false,
     "peerDependencies": {
-        "rxjs": ">=6.0",
+        "rxjs": ">=7.0",
         "tslib": ">=2.0"
     }
 }

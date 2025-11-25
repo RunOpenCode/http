@@ -22,7 +22,7 @@ export class ContentTypeInterceptor implements HttpInterceptorInterface {
             return next.handle(request);
         }
 
-        let contentType: string = request.headers.get('content-type');
+        let contentType: string | null = request.headers.get('content-type');
 
         // there is a content type, nothing to guess...
         if (null !== contentType) {

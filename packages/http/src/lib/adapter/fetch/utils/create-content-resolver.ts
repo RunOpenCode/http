@@ -6,7 +6,7 @@
  */
 export function createContentResolver<T = unknown>(response: Response, type: 'arraybuffer' | 'blob' | 'json' | 'text'): () => Promise<T> {
     if (204 === response.status) {
-        return (): Promise<null> => Promise.resolve(null);
+        return (): Promise<null> => Promise.resolve(null) ;
     }
 
     if ('arraybuffer' === type) {
