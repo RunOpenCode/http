@@ -20,14 +20,14 @@ describe('createContentResolver()', (): void => {
             [method]: mockedFunction,
         } as unknown as Response, type)();
 
-        expect(mockedFunction).toBeCalled();
+        expect(mockedFunction).toHaveBeenCalled();
     });
 
     it('throws exception when type is not supported.', (): void => {
         expect((): void => {
             /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
             createContentResolver<null>({} as Response, 'foo' as any);
-        }).toThrowError('Unsupported type "foo" provided.');
+        }).toThrow('Unsupported type "foo" provided.');
     });
 
 });

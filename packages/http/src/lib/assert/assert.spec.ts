@@ -12,7 +12,7 @@ describe('assertResponseIsSuccessful()', (): void => {
             assertResponseIsSuccessful({
                 status: code,
             } as HttpResponseInterface<unknown>);
-        }).not.toThrowError();
+        }).not.toThrow();
     });
 
     it.each([101, 301, 400, 401, 402, 403, 404, 500, 526])('asserts that response is not successful.', (code: number): void => {
@@ -20,7 +20,7 @@ describe('assertResponseIsSuccessful()', (): void => {
             assertResponseIsSuccessful({
                 status: code,
             } as HttpResponseInterface<unknown>);
-        }).toThrowError(`Expected response status code within range [200, 299], got: ${code}.`);
+        }).toThrow(`Expected response status code within range [200, 299], got: ${code}.`);
     });
 });
 
@@ -31,7 +31,7 @@ describe('assertResponseStatusCode()', (): void => {
             assertResponseStatusCode({
                 status: 200,
             } as HttpResponseInterface<unknown>, 200);
-        }).not.toThrowError();
+        }).not.toThrow();
     });
 
     it('asserts that response status code is not equal to expected.', (): void => {
@@ -39,7 +39,7 @@ describe('assertResponseStatusCode()', (): void => {
             assertResponseStatusCode({
                 status: 404,
             } as HttpResponseInterface<unknown>, 200);
-        }).toThrowError();
+        }).toThrow();
     });
 });
 
@@ -51,7 +51,7 @@ describe('assertResponseSatisfies()', (): void => {
 
         expect((): void => {
             assertResponseSatisfies(response, spy);
-        }).not.toThrowError();
+        }).not.toThrow();
 
         expect(spy).toHaveBeenCalledTimes(1);
         expect(spy).toHaveBeenCalledWith(response);
@@ -73,7 +73,7 @@ describe('assertResponseSatisfies()', (): void => {
 
         expect((): void => {
             assertResponseSatisfies(response, spy);
-        }).toThrowError();
+        }).toThrow();
 
         expect(spy).toHaveBeenCalledTimes(1);
         expect(spy).toHaveBeenCalledWith(response);
@@ -83,7 +83,7 @@ describe('assertResponseSatisfies()', (): void => {
         let spy: jest.Mock<Promise<boolean>>         = jest.fn((): Promise<boolean> => Promise.resolve(false));
         let response: HttpResponseInterface<unknown> = {} as HttpResponseInterface<unknown>;
 
-        expect(assertResponseSatisfies(response, spy)).rejects.toThrowError('Expected response to satisfy predicate.');
+        expect(assertResponseSatisfies(response, spy)).rejects.toThrow('Expected response to satisfy predicate.');
 
         expect(spy).toHaveBeenCalledTimes(1);
         expect(spy).toHaveBeenCalledWith(response);

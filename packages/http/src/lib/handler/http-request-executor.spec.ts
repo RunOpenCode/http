@@ -18,7 +18,7 @@ describe('HttpRequestExecutor', (): void => {
         let request: HttpRequestInterface                                         = new HttpRequest('https://foo.bar', RequestMethod.GET);
 
         expect(requestExecutor.handle(request)).toBe(observable);
-        expect(executorMockFn).toBeCalledTimes(1);
+        expect(executorMockFn).toHaveBeenCalledTimes(1);
     });
 
 });
