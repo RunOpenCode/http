@@ -25,7 +25,7 @@ export class HttpHeaders implements HttpHeadersInterface {
         }
 
         Object.keys(headers).forEach((name: string): void => {
-            let values: string[] = Array.isArray(headers[name]) ? headers[name] : [headers[name]];
+            let values: string[] = (Array.isArray(headers[name]) ? headers[name] : [headers[name]]) as string[];
             let lcName: string   = name.toLowerCase();
 
             this._headers.set(name, values);
